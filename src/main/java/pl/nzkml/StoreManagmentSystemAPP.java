@@ -15,29 +15,12 @@ import java.util.ResourceBundle;
  */
 public class StoreManagmentSystemAPP extends Application {
 
-    private static Scene scene;
-
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("loginWindow"));
-        stage.setScene(scene);
-        stage.show();
-    }
-
-    public static void setRoot(String fxml) throws IOException {
-        scene.setRoot(loadFXML(fxml));
-    }
-
-    private static Parent loadFXML(String fxml) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(StoreManagmentSystemAPP.class.getResource("views/"+fxml + ".fxml"));
-        fxmlLoader.setResources(ResourceBundle.getBundle("labels", new Locale("pl")));
-        return fxmlLoader.load();
-    }
-
-    public static void closeApplication()
-    {
+        SMSSceneManager.getInstance().firstScene(stage);
 
     }
+
     public static void main(String[] args) {
         launch();
     }
