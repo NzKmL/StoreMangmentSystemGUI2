@@ -16,7 +16,8 @@ import org.slf4j.LoggerFactory;
  */
 public class StoreManagmentSystemAPP extends Application {
 
-    Logger logger = LoggerFactory.getLogger(StoreManagmentSystemAPP.class);
+    private static final  Logger logger = LoggerFactory.getLogger(StoreManagmentSystemAPP.class);
+
 
     @Override
     public void start(Stage stage) throws IOException {
