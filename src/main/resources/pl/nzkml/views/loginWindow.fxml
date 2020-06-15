@@ -13,14 +13,14 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="224.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.nzkml.controllers.LoginWindowController">
    <children>
-      <Button fx:id="loginButtonLoginWindow" layoutX="217.0" layoutY="179.0" mnemonicParsing="false" onAction="#loginUser" prefHeight="25.0" prefWidth="169.0" text="Logowanie" />
-      <Button fx:id="exitButtonLoginWindow" layoutX="14.0" layoutY="179.0" mnemonicParsing="false" onAction="#closeApplicationByExitButton" prefHeight="25.0" prefWidth="169.0" text="%ExitButton" />
+      <Button fx:id="loginButtonLoginWindow" layoutX="217.0" layoutY="179.0" mnemonicParsing="false" onAction="#loginUser" prefHeight="25.0" prefWidth="169.0" text="%logButton" />
+      <Button fx:id="exitButtonLoginWindow" layoutX="14.0" layoutY="179.0" mnemonicParsing="false" onAction="#closeApplicationByExitButton" prefHeight="25.0" prefWidth="169.0" text="%exitButton" />
       <Text layoutX="63.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Login" wrappingWidth="119.13671875">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Text>
-      <Text layoutX="63.0" layoutY="145.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hasło" wrappingWidth="119.13671875">
+      <Text layoutX="63.0" layoutY="145.0" strokeType="OUTSIDE" strokeWidth="0.0" text="%password" wrappingWidth="119.13671875">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
@@ -28,15 +28,15 @@
       <TextField layoutX="181.0" layoutY="86.0" prefHeight="25.0" prefWidth="205.0" />
       <MenuBar layoutX="-3.0" layoutY="2.0" prefHeight="25.0" prefWidth="400.0">
         <menus>
-          <Menu mnemonicParsing="false" text="File">
+          <Menu mnemonicParsing="false" text="%file">
             <items>
-              <MenuItem fx:id="closeMenuBarLoginWindow" mnemonicParsing="false" onAction="#closeApplicationByMenuBar" text="Zamknij" />
+              <MenuItem fx:id="closeMenuBarLoginWindow" mnemonicParsing="false" onAction="#closeApplicationByMenuBar" text="%exit" />
             </items>
           </Menu>
         </menus>
       </MenuBar>
       <PasswordField layoutX="181.0" layoutY="126.0" prefHeight="25.0" prefWidth="205.0" />
-      <Text layoutX="63.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Język" wrappingWidth="119.13671875">
+      <Text layoutX="63.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="%language" wrappingWidth="119.13671875">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
