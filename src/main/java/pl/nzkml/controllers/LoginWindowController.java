@@ -6,7 +6,11 @@ import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 import pl.nzkml.SMSSceneManager;
+import pl.nzkml.authentication.AuthenticationService;
 import pl.nzkml.locales.Locales;
 
 import java.io.IOException;
@@ -15,17 +19,34 @@ import java.util.Locale;
 public class LoginWindowController {
     public Button loginButtonLoginWindow;
     public ComboBox languageComboBox;
-
+    public TextField loginWindowsloginTextField;
+    public PasswordField loginWindowPasswordTextField;
+    public Text wrongLogError;
 
 
     @FXML
     private void closeApplicationByExitButton(){
         Platform.exit();
     }
+
     @FXML
     private void loginUser() throws IOException {
-        Platform.exit();
-            }
+
+        String login =  loginWindowsloginTextField.getText();
+        String password = loginWindowPasswordTextField.getText();
+
+        AuthenticationService authenticationService = new AuthenticationService();
+
+        if( authenticationService.isPasswordCorrect(login, password)){
+           System.out.println("jest ok");
+        }
+        else {
+            loginWindowPasswordTextField.setText("");
+            loginWindowsloginTextField.setText("");
+            wrongLogError.setVisible(true);
+        }
+    }
+
     @FXML
     private void closeApplicationByMenuBar(){
         Platform.exit();
@@ -33,7 +54,6 @@ public class LoginWindowController {
 
     @FXML
     private void initialize(){
-
         languageComboBox.getSelectionModel().select(Locales.getInstance().getCurrentLanguage());
     }
 

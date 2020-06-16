@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.String?>
 <?import javafx.collections.FXCollections?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
@@ -27,7 +26,7 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </Text>
-      <TextField layoutX="181.0" layoutY="86.0" prefHeight="25.0" prefWidth="205.0" />
+      <TextField fx:id="loginWindowsloginTextField" layoutX="181.0" layoutY="86.0" prefHeight="25.0" prefWidth="205.0" />
       <MenuBar layoutX="-3.0" layoutY="2.0" prefHeight="25.0" prefWidth="400.0">
         <menus>
           <Menu mnemonicParsing="false" text="%file">
@@ -37,7 +36,7 @@
           </Menu>
         </menus>
       </MenuBar>
-      <PasswordField layoutX="181.0" layoutY="126.0" prefHeight="25.0" prefWidth="205.0" />
+      <PasswordField fx:id="loginWindowPasswordTextField" layoutX="181.0" layoutY="126.0" prefHeight="25.0" prefWidth="205.0" />
       <Text layoutX="63.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="%language" wrappingWidth="119.13671875">
          <font>
             <Font name="System Bold" size="18.0" />
@@ -49,5 +48,10 @@
               </FXCollections>
           </items>
       </ComboBox>
+      <Text fx:id="wrongLogError" fill="RED" layoutX="69.0" layoutY="173.0" strokeType="OUTSIDE" strokeWidth="0.0" text="%wrongLogError" visible="false" wrappingWidth="262.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>
