@@ -12,12 +12,16 @@ public class AuthenticationService implements Authenticate {
     public boolean isPasswordCorrect(String login, String password) {
 
 
+
         if (login ==null || password==null) return false;
 
         DaoFactory factory = DaoXmlFactory.getInstance();
         Repository repo = new UserRepository(factory.createDao(DaoType.USER));
         User user = (User) repo.getByID(login);
 
+        if(isPasswordExpired(login, password)){
+            return false;
+        };
 
 
         if (login.equals(user.getLogin()) && password.equals(user.getPassword())){
