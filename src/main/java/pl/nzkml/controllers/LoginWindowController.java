@@ -9,6 +9,8 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import pl.nzkml.SMSSceneManager;
 import pl.nzkml.authentication.AuthenticationService;
 import pl.nzkml.locales.Locales;
@@ -17,6 +19,9 @@ import java.io.IOException;
 import java.util.Locale;
 
 public class LoginWindowController {
+
+    Logger logger = LoggerFactory.getLogger(LoginWindowController.class);
+
     public Button loginButtonLoginWindow;
     public ComboBox languageComboBox;
     public TextField loginWindowsloginTextField;
@@ -38,12 +43,13 @@ public class LoginWindowController {
         AuthenticationService authenticationService = new AuthenticationService();
 
         if( authenticationService.isPasswordCorrect(login, password)){
-           System.out.println("jest ok");
+         logger.info("user login="+login+" został zalogowany");
         }
         else {
             loginWindowPasswordTextField.setText("");
             loginWindowsloginTextField.setText("");
             wrongLogError.setVisible(true);
+            logger.info("user login="+login+" nie został zalogowany");
         }
     }
 
