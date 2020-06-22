@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.collections.FXCollections?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="318.0" prefWidth="790.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.nzkml.controllers.CategoryWindowController">
+   <children>
+      <Button fx:id="categoryBackButton" layoutX="212.0" layoutY="279.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="102.0" text="%back" />
+      <Button fx:id="categoryCleanButton" layoutX="345.0" layoutY="279.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="102.0" text="%clean" />
+      <Button fx:id="categorySaveButton" layoutX="476.0" layoutY="279.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="102.0" text="%save" />
+      <Separator layoutX="16.0" layoutY="264.0" prefHeight="4.0" prefWidth="750.0" />
+      <MenuBar layoutY="2.0" prefHeight="25.0" prefWidth="790.0">
+         <menus>
+            <Menu mnemonicParsing="false" text="%file">
+               <items>
+                  <MenuItem fx:id="closeMenuBarLoginWindow" mnemonicParsing="false" onAction="#closeApplicationByMenuBar" text="%exit" />
+               </items>
+            </Menu>
+         </menus>
+      </MenuBar>
+      <Text layoutX="16.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="%categoryWindowLabel" textAlignment="CENTER" wrappingWidth="750.0">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Text>
+      <Text layoutX="20.0" layoutY="111.0" strokeType="OUTSIDE" strokeWidth="0.0" text="%categoryName" wrappingWidth="486.0">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Text>
+      <Separator layoutX="16.0" layoutY="74.0" prefHeight="4.0" prefWidth="750.0" />
+      <TextField fx:id="categoryNameTextField" layoutX="520.0" layoutY="92.0" prefHeight="25.0" prefWidth="246.0" />
+      <Text layoutX="20.0" layoutY="150.0" strokeType="OUTSIDE" strokeWidth="0.0" text="%categoryMetric" wrappingWidth="486.0">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Text>
+      <Text layoutX="20.0" layoutY="191.0" strokeType="OUTSIDE" strokeWidth="0.0" text="%categoryBoxQuantity" wrappingWidth="486.0">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Text>
+      <Text layoutX="20.0" layoutY="226.0" strokeType="OUTSIDE" strokeWidth="0.0" text="%boxSize" wrappingWidth="486.0">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Text>
+      <ComboBox fx:id="categoryBoxSize" editable="false" layoutX="520.0" layoutY="207.0" onAction="#changeCategoryBoxSizeAction" onShowing="#onShowingCategoryBoxSize" prefHeight="25.0" prefWidth="246.0">
+         <items>
+            <FXCollections fx:factory="observableArrayList" />
+         </items>
+      </ComboBox>
+      <ComboBox fx:id="categoryMetricField" editable="false" layoutX="520.0" layoutY="131.0" onAction="#categoryMetricFieldAction" onShowing="#onShowingCategoryMetricField" prefHeight="25.0" prefWidth="246.0">
+         <items>
+            <FXCollections fx:factory="observableArrayList" />
+         </items>
+      </ComboBox>
+      <Spinner fx:id="categoryBoxQuantityField" layoutX="520.0" layoutY="171.0" prefHeight="25.0" prefWidth="246.0" />
+   </children>
+</AnchorPane>

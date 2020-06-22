@@ -15,7 +15,9 @@ public class AuthenticationService implements Authenticate {
 
         Repository repo = RepositoryFactory.getInstance().createRepository(DataType.USER);
         User user = (User) repo.getByID(login);
-
+        if(user == null){
+            return false;
+        }
         if(isPasswordExpired(login, password)){
             return false;
         };

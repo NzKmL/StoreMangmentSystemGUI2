@@ -17,9 +17,11 @@ public class DaoXmlFactory implements DaoFactory {
         return instance;
     }
 
-    public CrudDao createDao(DaoType type){
-
-        if(type.equals(DaoType.USER)){
+    public CrudDao createDao(DataType type){
+    if(DataSourceType.WS == ApplicationProperties.dataSourceType){
+        //TODO DAO factory for WS
+    }
+        if(type.equals(DataType.USER)){
             return new UserDaoXML();
         }
         else if(type.equals(DataType.CATEGORY)){

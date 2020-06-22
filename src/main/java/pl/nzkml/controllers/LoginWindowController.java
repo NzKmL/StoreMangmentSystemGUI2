@@ -12,13 +12,14 @@ import javafx.scene.text.Text;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.nzkml.SMSSceneManager;
+import pl.nzkml.StoreManagmentSystemAPP;
 import pl.nzkml.authentication.AuthenticationService;
 import pl.nzkml.locales.Locales;
 
 import java.io.IOException;
 import java.util.Locale;
 
-public class LoginWindowController {
+public class LoginWindowController extends AbstractController {
 
     Logger logger = LoggerFactory.getLogger(LoginWindowController.class);
 
@@ -43,6 +44,7 @@ public class LoginWindowController {
         AuthenticationService authenticationService = new AuthenticationService();
 
         if( authenticationService.isPasswordCorrect(login, password)){
+            SMSSceneManager.getInstance().setRoot("mainMenuDemo");
          logger.info("user login="+login+" został zalogowany");
         }
         else {
@@ -51,12 +53,9 @@ public class LoginWindowController {
             wrongLogError.setVisible(true);
             logger.info("user login="+login+" nie został zalogowany");
         }
+
     }
 
-    @FXML
-    private void closeApplicationByMenuBar(){
-        Platform.exit();
-    }
 
     @FXML
     private void initialize(){
