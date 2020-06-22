@@ -1,9 +1,12 @@
-package pl.nzkml.datasource.xml.daoXml;
+package pl.nzkml.datasource.xml.dao;
 
 import pl.nzkml.datasource.CrudDao;
 import pl.nzkml.datasource.DaoFactory;
-import pl.nzkml.datasource.DaoType;
-import pl.nzkml.datasource.xml.daoXml.user.UserDaoXML;
+import pl.nzkml.datasource.DataType;
+import pl.nzkml.datasource.DataSourceType;
+import pl.nzkml.datasource.xml.dao.category.CategoryDaoXML;
+import pl.nzkml.datasource.xml.dao.user.UserDaoXML;
+import pl.nzkml.properties.ApplicationProperties;
 
 public class DaoXmlFactory implements DaoFactory {
 
@@ -18,6 +21,9 @@ public class DaoXmlFactory implements DaoFactory {
 
         if(type.equals(DaoType.USER)){
             return new UserDaoXML();
+        }
+        else if(type.equals(DataType.CATEGORY)){
+            return new CategoryDaoXML();
         }
         return null;
 

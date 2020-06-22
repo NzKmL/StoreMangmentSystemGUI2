@@ -1,16 +1,14 @@
-package pl.nzkml.datasource.xml.daoXml.user;
+package pl.nzkml.datasource.xml.dao.user;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import pl.nzkml.datasource.xml.fileXml.DataListContainerToXml;
-import pl.nzkml.datasource.xml.fileXml.FileProcessor;
+import pl.nzkml.datasource.xml.file.FileProcessor;
 
 import pl.nzkml.datasource.CrudDao;
 import pl.nzkml.datasource.repoException.RowNotFound;
-import pl.nzkml.datasource.entity.users.User;
-import pl.nzkml.datasource.xml.fileXml.UserListContainerToXml;
+import pl.nzkml.datasource.entity.User;
 import pl.nzkml.properties.ApplicationProperties;
 
 import java.io.FileNotFoundException;
@@ -94,7 +92,7 @@ private List<User> userList;
     private void saveToFile() {
         XmlMapper mapper = new XmlMapper();
         try {
-            DataListContainerToXml<User> container = new  DataListContainerToXml();
+            UserListContainerToXml container = new  UserListContainerToXml();
             container.setDataList(userList);
             new FileProcessor().writeToFile(ApplicationProperties.userFilePath,mapper.writeValueAsString(container));
         } catch (JsonProcessingException e) {

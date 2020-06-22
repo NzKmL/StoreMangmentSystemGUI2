@@ -10,6 +10,6 @@ module pl.nzkml {
     opens pl.nzkml.datasource.entity.users to com.fasterxml.jackson.databind;
     exports pl.nzkml.controllers;
     exports pl.nzkml;
-    exports pl.nzkml.datasource.xml.fileXml;
+    exports pl.nzkml.datasource.xml.file;
 
 }

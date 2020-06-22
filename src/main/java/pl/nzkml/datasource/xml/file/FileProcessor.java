@@ -1,4 +1,4 @@
-package pl.nzkml.datasource.xml.fileXml;
+package pl.nzkml.datasource.xml.file;
 
 import java.io.File;
 import java.io.FileNotFoundException;

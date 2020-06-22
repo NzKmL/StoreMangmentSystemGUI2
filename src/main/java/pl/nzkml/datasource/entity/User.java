@@ -1,4 +1,4 @@
-package pl.nzkml.datasource.entity.users;
+package pl.nzkml.datasource.entity;
 
 public class User {
     private String login;
