@@ -7,7 +7,8 @@ module pl.nzkml {
 
     opens pl.nzkml.views to javafx.fxml;
     opens pl.nzkml.controllers to javafx.fxml;
-    opens pl.nzkml.datasource.entity to com.fasterxml.jackson.databind;
+    opens pl.nzkml.datasource.entity to com.fasterxml.jackson.databind, javafx.base;
+
     exports pl.nzkml.controllers;
     exports pl.nzkml;
     exports pl.nzkml.datasource.xml.file;

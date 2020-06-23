@@ -35,7 +35,7 @@ public class CategoryDaoXML implements CrudDao<Category> {
         if (categoryList.isEmpty()) {
             return null;
         }else{
-            return categoryList.stream().filter(temp -> (String.valueOf(id)).equals(temp.getId())).findAny().orElse(null);
+            return categoryList.stream().filter(temp -> (Integer.valueOf((String)id)).equals(temp.getId())).findAny().orElse(null);
         }
     }
 private List<Category> categoryList;

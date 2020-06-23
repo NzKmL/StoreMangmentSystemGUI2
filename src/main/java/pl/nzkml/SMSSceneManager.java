@@ -6,15 +6,14 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.nzkml.locales.Locales;
 import pl.nzkml.properties.ApplicationProperties;
 
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.Locale;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class SMSSceneManager {
 
@@ -23,9 +22,11 @@ public class SMSSceneManager {
     private static Scene scene;
     private String fxml;
     private String fxmlBack;
+    private Map<String, Stage> stagemap = new HashMap<>();
     private SMSSceneManager(){
     fxml = ApplicationProperties.startFXMLFile;
     }
+    private Stage stage;
 
     public static SMSSceneManager getInstance() {
         logger.debug("create instance");
@@ -59,7 +60,7 @@ public class SMSSceneManager {
         Locales.getInstance().setCurrentLocate(locale);
         scene.setRoot(loadFXML(fxml, locale));
     }
-private Stage stage;
+
     public void firstScene(Stage stage){
         logger.debug("First Scene start");
         scene = new Scene(loadFXML(fxml, Locales.getInstance().getCurrentLocate()));
@@ -68,19 +69,40 @@ private Stage stage;
         stage.show();
     }
 
-    public void setScene(String fxml){
+    public void openNewWindow(String fxml){
+        logger.debug("New Window "+fxml);
+        Scene scene = new Scene(loadFXML(fxml, Locales.getInstance().getCurrentLocate()));
+        Stage stage = new Stage();
+        stage.setTitle("Create new category");
+        stage.setScene(scene);
+        stage.setAlwaysOnTop(true);
+        stage.show();
+    }
 
+    public void setScene(String fxml){
         logger.debug("Change root to "+fxml);
-        this.fxmlBack = this.fxml;
+        if(!fxml.equals(fxmlBack)){
+        this.fxmlBack = this.fxml;}
         this.fxml = fxml;
         stage.setScene(new Scene(loadFXML(fxml, Locales.getInstance().getCurrentLocate())));
     }
 
-    public  void closeApplication() {
+
+    public void closeApplication() {
         Platform.exit();
     }
 
     public void backToPreviosu() {
         setScene(fxmlBack);
+    }
+
+    public void closeAdditionalWindow(Stage window){
+        window.close();
+        refreshStage();
+    }
+    public void refreshStage(){
+        stage.close();
+        stage.setScene(new Scene(loadFXML(fxml, Locales.getInstance().getCurrentLocate())));
+        stage.show();
     }
 }

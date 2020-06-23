@@ -1,10 +1,14 @@
 package pl.nzkml.controllers;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
+import javafx.stage.Window;
 import pl.nzkml.SMSSceneManager;
 import pl.nzkml.datasource.DataType;
 import pl.nzkml.datasource.RepositoryFactory;
@@ -64,6 +68,8 @@ public class CategoryWindowController extends AbstractController {
         category.setName(categoryNameTextField.getText());
         category.setMetric(categoryMetricField.getSelectionModel().getSelectedItem());
         RepositoryFactory.getInstance().createRepository(DataType.CATEGORY).add(category);
-        SMSSceneManager.getInstance().backToPreviosu();
+
+        Window window =   ((Node)(actionEvent.getSource())).getScene().getWindow();
+        SMSSceneManager.getInstance().closeAdditionalWindow((Stage)window);
     }
 }

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="746.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.nzkml.controllers.CategoryTableWindowController">
+   <children>
+      <MenuBar layoutY="2.0" prefHeight="25.0" prefWidth="700.0">
+         <menus>
+            <Menu mnemonicParsing="false" text="%file">
+               <items>
+                  <MenuItem fx:id="closeMenuBarLoginWindow" mnemonicParsing="false" onAction="#closeApplicationByMenuBar" text="%exit" />
+               </items>
+            </Menu>
+         </menus>
+      </MenuBar>
+      <Button fx:id="categoryBackButton" layoutX="21.0" layoutY="678.0" mnemonicParsing="false" onAction="#backButtonAction" prefHeight="25.0" prefWidth="102.0" text="%back" />
+      <Separator layoutX="21.0" layoutY="651.0" prefHeight="6.0" prefWidth="653.0" />
+      <TableView fx:id="categoryTable" layoutX="14.0" layoutY="33.0" prefHeight="565.0" prefWidth="670.0">
+        <columns>
+          <TableColumn fx:id="tableCategoryID" prefWidth="75.0" text="%tableCategoryID" />
+          <TableColumn fx:id="tableCategoryName" prefWidth="146.0" text="%tableCategoryName" />
+          <TableColumn fx:id="tableCategoryMetric" prefWidth="145.0" text="%tableCategoryMetric" />
+          <TableColumn fx:id="tableCategoryQuantity" prefWidth="189.0" text="%tableCategoryQuantity" />
+            <TableColumn fx:id="tableCategoryBoxSize" prefWidth="114.0" text="%tableCategoryBoxSize" />
+        </columns>
+      </TableView>
+      <Button fx:id="addNewCategoryButton" layoutX="72.0" layoutY="613.0" mnemonicParsing="false" onAction="#addNewCategory" prefHeight="25.0" prefWidth="200.0" text="%addNew" />
+      <Button fx:id="deleteCategoryButton" layoutX="440.0" layoutY="613.0" mnemonicParsing="false" onAction="#deleteCategory" prefHeight="25.0" prefWidth="200.0" text="%delete" />
+   </children>
+</AnchorPane>
