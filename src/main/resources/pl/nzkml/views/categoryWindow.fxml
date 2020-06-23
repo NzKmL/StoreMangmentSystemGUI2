@@ -15,9 +15,9 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="318.0" prefWidth="790.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.nzkml.controllers.CategoryWindowController">
    <children>
-      <Button fx:id="categoryBackButton" layoutX="212.0" layoutY="279.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="102.0" text="%back" />
-      <Button fx:id="categoryCleanButton" layoutX="345.0" layoutY="279.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="102.0" text="%clean" />
-      <Button fx:id="categorySaveButton" layoutX="476.0" layoutY="279.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="102.0" text="%save" />
+      <Button fx:id="categoryBackButton" layoutX="212.0" layoutY="279.0" mnemonicParsing="false" onAction="#backButtonAction" prefHeight="25.0" prefWidth="102.0" text="%back" />
+      <Button fx:id="categoryCleanButton" layoutX="345.0" layoutY="279.0" mnemonicParsing="false" onAction="#cleanButtonAction" prefHeight="25.0" prefWidth="102.0" text="%clean" />
+      <Button fx:id="categorySaveButton" layoutX="476.0" layoutY="279.0" mnemonicParsing="false" onAction="#saveButtonAction" prefHeight="25.0" prefWidth="102.0" text="%save" />
       <Separator layoutX="16.0" layoutY="264.0" prefHeight="4.0" prefWidth="750.0" />
       <MenuBar layoutY="2.0" prefHeight="25.0" prefWidth="790.0">
          <menus>
@@ -55,16 +55,16 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </Text>
-      <ComboBox fx:id="categoryBoxSize" editable="false" layoutX="520.0" layoutY="207.0" onAction="#changeCategoryBoxSizeAction" onShowing="#onShowingCategoryBoxSize" prefHeight="25.0" prefWidth="246.0">
+      <ComboBox fx:id="categoryBoxSize" editable="false" layoutX="520.0" layoutY="207.0" prefHeight="25.0" prefWidth="246.0">
          <items>
             <FXCollections fx:factory="observableArrayList" />
          </items>
       </ComboBox>
-      <ComboBox fx:id="categoryMetricField" editable="false" layoutX="520.0" layoutY="131.0" onAction="#categoryMetricFieldAction" onShowing="#onShowingCategoryMetricField" prefHeight="25.0" prefWidth="246.0">
+      <ComboBox fx:id="categoryMetricField" editable="false" layoutX="520.0" layoutY="131.0" prefHeight="25.0" prefWidth="246.0">
          <items>
             <FXCollections fx:factory="observableArrayList" />
          </items>
       </ComboBox>
-      <Spinner fx:id="categoryBoxQuantityField" layoutX="520.0" layoutY="171.0" prefHeight="25.0" prefWidth="246.0" />
+      <Spinner fx:id="categoryBoxQuantityField"   min="0" max = "20000" initialValue="0" amountToStepBy="1" editable="true" layoutX="520.0" layoutY="171.0" prefHeight="25.0" prefWidth="246.0" />
    </children>
 </AnchorPane>

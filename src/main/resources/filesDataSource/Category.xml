@@ -1,14 +1,1 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="filesDataSource.CategoryXml"
-            prefHeight="400.0" prefWidth="600.0">
-
-</AnchorPane>
+<CategoryListContainerToXml><dataList><dataList><id>1</id><name>test1</name><metric>Kilogramy [kg]</metric><boxQuantity>5</boxQuantity><boxSize>Ma³e</boxSize></dataList><dataList><id>2</id><name>test2</name><metric>Metry [m]</metric><boxQuantity>10</boxQuantity><boxSize>&#x8c;rednie</boxSize></dataList></dataList></CategoryListContainerToXml>

@@ -1,19 +1,69 @@
 package pl.nzkml.controllers;
 
 import javafx.event.ActionEvent;
-import javafx.event.Event;
+import javafx.fxml.FXML;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Spinner;
+import javafx.scene.control.TextField;
+import pl.nzkml.SMSSceneManager;
+import pl.nzkml.datasource.DataType;
+import pl.nzkml.datasource.RepositoryFactory;
+import pl.nzkml.datasource.entity.Category;
+import pl.nzkml.locales.Locales;
+import pl.nzkml.properties.ApplicationProperties;
+
+import java.util.ResourceBundle;
 
 public class CategoryWindowController extends AbstractController {
+    @FXML
+    private TextField categoryNameTextField;
+    @FXML
+    private ComboBox<String> categoryBoxSize;
+    @FXML
+    private ComboBox<String> categoryMetricField;
+    @FXML
+    private Spinner<Integer> categoryBoxQuantityField;
 
-    public void changeCategoryBoxSizeAction(ActionEvent actionEvent) {
+    @FXML
+    private void initialize(){
+
+
+        initCategoryMetricField();
+        initCategoryBoxSize();
+
+
     }
 
-    public void onShowingCategoryBoxSize(Event event) {
+    private void initCategoryBoxSize() {
+        categoryBoxSize.getItems().clear();
+        categoryBoxSize.getItems().addAll( ResourceBundle.getBundle("labels", Locales.getInstance().getCurrentLocate()).getString("categoryBoxSize").split(";"));
+        categoryBoxSize.getSelectionModel().select(0);
     }
 
-    public void categoryMetricFieldAction(ActionEvent actionEvent) {
+
+    private void initCategoryMetricField() {
+        categoryMetricField.getItems().clear();
+        categoryMetricField.getItems().addAll( ResourceBundle.getBundle("labels", Locales.getInstance().getCurrentLocate()).getString("categoryType").split(";"));
+        categoryMetricField.getSelectionModel().select(0); ;
+    }
+    public void backButtonAction(ActionEvent actionEvent) {
+        SMSSceneManager.getInstance().backToPreviosu();
     }
 
-    public void onShowingCategoryMetricField(Event event) {
+    public void cleanButtonAction(ActionEvent actionEvent) {
+        categoryNameTextField.setText("") ;
+        categoryBoxSize.getSelectionModel().select(0);
+        categoryMetricField.getSelectionModel().select(0); ;
+        categoryBoxQuantityField.getValueFactory().setValue(0);
+    }
+
+    public void saveButtonAction(ActionEvent actionEvent) {
+        Category category = new Category();
+        category.setBoxQuantity(categoryBoxQuantityField.getValue());
+        category.setBoxSize(categoryBoxSize.getSelectionModel().getSelectedItem());
+        category.setName(categoryNameTextField.getText());
+        category.setMetric(categoryMetricField.getSelectionModel().getSelectedItem());
+        RepositoryFactory.getInstance().createRepository(DataType.CATEGORY).add(category);
+        SMSSceneManager.getInstance().backToPreviosu();
     }
 }

@@ -22,6 +22,7 @@ public class StoreManagmentSystemAPP extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         logger.info("Application Start");
+        stage.sizeToScene();
         SMSSceneManager.getInstance().firstScene(stage);
 
     }

@@ -4,10 +4,12 @@ import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.nzkml.locales.Locales;
+import pl.nzkml.properties.ApplicationProperties;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -20,9 +22,9 @@ public class SMSSceneManager {
     private static final Logger logger = LoggerFactory.getLogger(StoreManagmentSystemAPP.class);
     private static Scene scene;
     private String fxml;
-
+    private String fxmlBack;
     private SMSSceneManager(){
-    fxml = "loginWindow";
+    fxml = ApplicationProperties.startFXMLFile;
     }
 
     public static SMSSceneManager getInstance() {
@@ -38,8 +40,11 @@ public class SMSSceneManager {
         Parent parent=null;
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("views/"+fxml + ".fxml"));
         fxmlLoader.setResources(ResourceBundle.getBundle("labels", locale));
+
         try {
+
             parent =  fxmlLoader.load();
+
         } catch (IOException e) {
            logger.error("fxml file load error");
            logger.error(e.getMessage());
@@ -54,21 +59,28 @@ public class SMSSceneManager {
         Locales.getInstance().setCurrentLocate(locale);
         scene.setRoot(loadFXML(fxml, locale));
     }
-
+private Stage stage;
     public void firstScene(Stage stage){
         logger.debug("First Scene start");
         scene = new Scene(loadFXML(fxml, Locales.getInstance().getCurrentLocate()));
+        this.stage = stage;
         stage.setScene(scene);
         stage.show();
     }
 
-    public void setRoot(String fxml){
+    public void setScene(String fxml){
+
         logger.debug("Change root to "+fxml);
+        this.fxmlBack = this.fxml;
         this.fxml = fxml;
-        scene.setRoot(loadFXML(fxml, Locales.getInstance().getCurrentLocate()));
+        stage.setScene(new Scene(loadFXML(fxml, Locales.getInstance().getCurrentLocate())));
     }
 
     public  void closeApplication() {
         Platform.exit();
+    }
+
+    public void backToPreviosu() {
+        setScene(fxmlBack);
     }
 }

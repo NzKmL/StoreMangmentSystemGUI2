@@ -19,10 +19,12 @@ import java.util.List;
 
 public class CategoryDaoXML implements CrudDao<Category> {
     Logger logger = LoggerFactory.getLogger(this.getClass());
+    private int maxID=0;
     @Override
-    public void insert(Category user) {
+    public void insert(Category category) {
         nullOrEmptyOperation();
-        categoryList.add(user);
+        category.setId(++maxID);
+        categoryList.add(category);
         saveToFile();
     }
     @Override
@@ -49,6 +51,13 @@ private List<Category> categoryList;
                CategoryListContainerToXml categoryListXmlContainer = new CategoryListContainerToXml();
                 categoryListXmlContainer = mapper.readValue(xml, categoryListXmlContainer.getClass());
                categoryList =categoryListXmlContainer.getDataList();
+
+               for (Category temp:categoryList) {
+                   if(maxID<temp.getId()){
+                       maxID=temp.getId();
+                   }
+               }
+
            } else {
                categoryList = new ArrayList<>();
            }

@@ -1,7 +1,6 @@
 package pl.nzkml.controllers;
 
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -12,7 +11,6 @@ import javafx.scene.text.Text;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.nzkml.SMSSceneManager;
-import pl.nzkml.StoreManagmentSystemAPP;
 import pl.nzkml.authentication.AuthenticationService;
 import pl.nzkml.locales.Locales;
 
@@ -44,7 +42,7 @@ public class LoginWindowController extends AbstractController {
         AuthenticationService authenticationService = new AuthenticationService();
 
         if( authenticationService.isPasswordCorrect(login, password)){
-            SMSSceneManager.getInstance().setRoot("mainMenuDemo");
+            SMSSceneManager.getInstance().setScene("mainMenuDemo");
          logger.info("user login="+login+" został zalogowany");
         }
         else {

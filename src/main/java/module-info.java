@@ -12,5 +12,5 @@ module pl.nzkml {
     exports pl.nzkml;
     exports pl.nzkml.datasource.xml.file;
     exports pl.nzkml.datasource.xml.dao.user;
-
+    exports pl.nzkml.datasource.xml.dao.category;
 }
