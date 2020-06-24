@@ -1,4 +1,4 @@
-package pl.nzkml.datasource.entity;
+package pl.nzkml.datasource.model;
 
 import pl.nzkml.datasource.DataType;
 import pl.nzkml.datasource.RepositoryFactory;

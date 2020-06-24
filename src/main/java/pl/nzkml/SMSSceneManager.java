@@ -91,7 +91,8 @@ public class SMSSceneManager {
     }
 
     public void backToPreviosu() {
-        setScene(fxmlBack);
+        if(fxmlBack!=null && !fxmlBack.isEmpty()){
+        setScene(fxmlBack);}
     }
 
     public void closeAdditionalWindow(Stage window){

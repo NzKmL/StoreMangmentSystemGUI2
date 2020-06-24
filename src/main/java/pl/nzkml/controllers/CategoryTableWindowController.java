@@ -2,27 +2,20 @@ package pl.nzkml.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.stage.Stage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.nzkml.SMSSceneManager;
 import pl.nzkml.datasource.DataType;
-import pl.nzkml.datasource.Repository;
 import pl.nzkml.datasource.RepositoryFactory;
-import pl.nzkml.datasource.entity.Category;
+import pl.nzkml.datasource.model.Category;
 import pl.nzkml.datasource.repoException.RowNotFound;
-import pl.nzkml.locales.Locales;
 import pl.nzkml.properties.ApplicationProperties;
 
-import java.io.IOException;
 import java.util.List;
-import java.util.Locale;
 
 public class CategoryTableWindowController extends AbstractController {
     public Button refreshCategoryTableButton;

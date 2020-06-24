@@ -1,6 +1,5 @@
 package pl.nzkml.controllers;
 
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -12,9 +11,8 @@ import javafx.stage.Window;
 import pl.nzkml.SMSSceneManager;
 import pl.nzkml.datasource.DataType;
 import pl.nzkml.datasource.RepositoryFactory;
-import pl.nzkml.datasource.entity.Category;
+import pl.nzkml.datasource.model.Category;
 import pl.nzkml.locales.Locales;
-import pl.nzkml.properties.ApplicationProperties;
 
 import java.util.ResourceBundle;
 
@@ -51,7 +49,8 @@ public class CategoryWindowController extends AbstractController {
         categoryMetricField.getSelectionModel().select(0); ;
     }
     public void backButtonAction(ActionEvent actionEvent) {
-        SMSSceneManager.getInstance().backToPreviosu();
+        Window window =   ((Node)(actionEvent.getSource())).getScene().getWindow();
+        SMSSceneManager.getInstance().closeAdditionalWindow((Stage)window);
     }
 
     public void cleanButtonAction(ActionEvent actionEvent) {

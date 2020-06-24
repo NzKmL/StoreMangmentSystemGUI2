@@ -1,13 +1,17 @@
 package pl.nzkml.controllers;
 
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
+import javafx.stage.Window;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.nzkml.SMSSceneManager;
@@ -53,7 +57,10 @@ public class LoginWindowController extends AbstractController {
         }
 
     }
-
+    public void backButtonAction(ActionEvent actionEvent) {
+        Window window =   ((Node)(actionEvent.getSource())).getScene().getWindow();
+        SMSSceneManager.getInstance().closeAdditionalWindow((Stage)window);
+    }
 
     @FXML
     private void initialize(){

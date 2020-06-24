@@ -1,6 +1,6 @@
 package pl.nzkml.datasource.xml.dao.user;
 
-import pl.nzkml.datasource.entity.User;
+import pl.nzkml.datasource.model.User;
 
 import java.util.List;
 

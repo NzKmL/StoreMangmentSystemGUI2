@@ -1,7 +1,6 @@
 package pl.nzkml.datasource.xml.dao.transport;
 
-import pl.nzkml.datasource.entity.Transport;
-import pl.nzkml.datasource.entity.User;
+import pl.nzkml.datasource.model.Transport;
 
 import java.util.List;
 

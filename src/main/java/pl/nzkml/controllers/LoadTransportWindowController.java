@@ -3,15 +3,18 @@ package pl.nzkml.controllers;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
+import javafx.stage.Window;
 import pl.nzkml.SMSSceneManager;
 import pl.nzkml.datasource.DataType;
 import pl.nzkml.datasource.RepositoryFactory;
-import pl.nzkml.datasource.entity.Category;
-import pl.nzkml.datasource.entity.Transport;
-import pl.nzkml.datasource.entity.TransportElement;
-import pl.nzkml.datasource.entity.TransportTableElement;
+import pl.nzkml.datasource.model.Category;
+import pl.nzkml.datasource.model.Transport;
+import pl.nzkml.datasource.model.TransportElement;
+import pl.nzkml.datasource.model.TransportTableElement;
 import pl.nzkml.properties.ApplicationProperties;
 
 import java.util.*;
@@ -24,7 +27,7 @@ public class LoadTransportWindowController extends AbstractController{
     public Button addElementToTransportList;
     public Button removeElementFromTableButton;
     public TableView<TransportTableElement> transportTable;
-    public TableColumn<TransportTableElement, Integer> transportTableIDCokumn;
+    public TableColumn<TransportTableElement, Integer> transportTableIDColumn;
     public TableColumn<TransportTableElement, String> TransportTableCategoryNameColumn;
     public TableColumn<TransportTableElement, String> transportTableQuantityColumn;
     public Button clearTransportTableButton;
@@ -56,7 +59,7 @@ public class LoadTransportWindowController extends AbstractController{
     private void refresfTransportTable() {
         transportTable.getItems().clear();
 
-        transportTableIDCokumn.setCellValueFactory(new PropertyValueFactory<TransportTableElement, Integer>("no"));
+        transportTableIDColumn.setCellValueFactory(new PropertyValueFactory<TransportTableElement, Integer>("no"));
         TransportTableCategoryNameColumn.setCellValueFactory(new PropertyValueFactory<TransportTableElement, String>("categoryName"));
         transportTableQuantityColumn.setCellValueFactory(new PropertyValueFactory<TransportTableElement, String>("quantity"));
         transportTable.getItems().addAll(tableElements);
@@ -93,11 +96,14 @@ public class LoadTransportWindowController extends AbstractController{
     }
 
     public void reloadCategories(Event event) {
-
         initCategorySelectField();
     }
 
     public void openCategoryWindow(ActionEvent actionEvent) {
         SMSSceneManager.getInstance().openNewWindow(ApplicationProperties.NEW_CATEGORY_WINDOW);
+    }
+    public void backButtonAction(ActionEvent actionEvent) {
+        Window window =   ((Node)(actionEvent.getSource())).getScene().getWindow();
+        SMSSceneManager.getInstance().closeAdditionalWindow((Stage)window);
     }
 }

@@ -1,6 +1,6 @@
 package pl.nzkml.datasource.xml.dao.category;
 
-import pl.nzkml.datasource.entity.Category;
+import pl.nzkml.datasource.model.Category;
 
 
 import java.util.List;

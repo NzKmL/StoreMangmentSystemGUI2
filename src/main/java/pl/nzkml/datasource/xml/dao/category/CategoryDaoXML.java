@@ -5,7 +5,7 @@ import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.nzkml.datasource.CrudDao;
-import pl.nzkml.datasource.entity.Category;
+import pl.nzkml.datasource.model.Category;
 import pl.nzkml.datasource.repoException.RowNotFound;
 import pl.nzkml.datasource.xml.file.FileProcessor;
 import pl.nzkml.properties.ApplicationProperties;

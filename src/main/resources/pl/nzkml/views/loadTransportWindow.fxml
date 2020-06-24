@@ -55,7 +55,7 @@
       <Button fx:id="removeElementFromTableButton" layoutX="381.0" layoutY="614.0" mnemonicParsing="false" onAction="#removetTableElement" prefHeight="25.0" prefWidth="194.0" text="%removeTransportElement" />
       <TableView fx:id="transportTable" layoutX="25.0" layoutY="154.0" prefHeight="451.0" prefWidth="550.0">
         <columns>
-          <TableColumn fx:id="transportTableIDCokumn" prefWidth="75.0" text="%No" />
+          <TableColumn fx:id="transportTableIDColumn" prefWidth="75.0" text="%No" />
           <TableColumn fx:id="TransportTableCategoryNameColumn" prefWidth="374.0" text="%categoryName" />
             <TableColumn fx:id="transportTableQuantityColumn" prefWidth="100.0" text="%quantity" />
         </columns>

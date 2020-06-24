@@ -3,7 +3,7 @@ package pl.nzkml.authentication;
 import pl.nzkml.datasource.DataType;
 import pl.nzkml.datasource.Repository;
 import pl.nzkml.datasource.RepositoryFactory;
-import pl.nzkml.datasource.entity.User;
+import pl.nzkml.datasource.model.User;
 
 public class AuthenticationService implements Authenticate {
     @Override
