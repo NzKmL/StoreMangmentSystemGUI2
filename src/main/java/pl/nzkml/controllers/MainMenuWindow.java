@@ -12,4 +12,9 @@ public class MainMenuWindow extends AbstractController {
     public void openCategoryWindow(ActionEvent actionEvent) {
         SMSSceneManager.getInstance().setScene(ApplicationProperties.CATEGORY_LIST_WINDOW);
     }
+
+    public void openAddTransportWindow(ActionEvent actionEvent) {
+        SMSSceneManager.getInstance().setScene(ApplicationProperties.ADD_TRANPOSRT_WINDOW);
+
+    }
 }

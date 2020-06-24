@@ -1,5 +1,5 @@
 package pl.nzkml.datasource;
 
 public enum DataType {
-    USER, CATEGORY;
+    USER, CATEGORY, TRANSPORT;
 }

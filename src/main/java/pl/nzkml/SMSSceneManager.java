@@ -4,9 +4,7 @@ import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import javafx.stage.Window;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.nzkml.locales.Locales;
@@ -24,7 +22,7 @@ public class SMSSceneManager {
     private String fxmlBack;
     private Map<String, Stage> stagemap = new HashMap<>();
     private SMSSceneManager(){
-    fxml = ApplicationProperties.startFXMLFile;
+    fxml = ApplicationProperties.START_FXML_FILE;
     }
     private Stage stage;
 
@@ -98,7 +96,7 @@ public class SMSSceneManager {
 
     public void closeAdditionalWindow(Stage window){
         window.close();
-        refreshStage();
+
     }
     public void refreshStage(){
         stage.close();

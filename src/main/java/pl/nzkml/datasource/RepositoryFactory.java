@@ -16,7 +16,7 @@ public class RepositoryFactory {
     }
 
     public Repository createRepository(DataType type) {
-        if (ApplicationProperties.dataSourceType == DataSourceType.WS) {
+        if (ApplicationProperties.DATE_SOURCE_TYPE == DataSourceType.WS) {
             //TODO: Do zrobienia przy implementacji WS
             switch (type) {
 
@@ -24,7 +24,7 @@ public class RepositoryFactory {
                         return new RepositoryWS();
             }
         }
-        else if(ApplicationProperties.dataSourceType == DataSourceType.XML){
+        else if(ApplicationProperties.DATE_SOURCE_TYPE == DataSourceType.XML){
                 return new RepositoryXml(DaoXmlFactory.getInstance().createDao(type));
         }
     return null;

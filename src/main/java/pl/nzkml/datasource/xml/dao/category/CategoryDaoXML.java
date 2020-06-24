@@ -6,7 +6,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.nzkml.datasource.CrudDao;
 import pl.nzkml.datasource.entity.Category;
-import pl.nzkml.datasource.entity.User;
 import pl.nzkml.datasource.repoException.RowNotFound;
 import pl.nzkml.datasource.xml.file.FileProcessor;
 import pl.nzkml.properties.ApplicationProperties;
@@ -46,7 +45,7 @@ private List<Category> categoryList;
         FileProcessor fileProcessor = new FileProcessor();
         String xml = null;
         try {
-            xml = fileProcessor.readFile(ApplicationProperties.categoryFilePath);
+            xml = fileProcessor.readFile(ApplicationProperties.CATEGORY_FILE_PATH);
            if(!xml.isEmpty()) {
                CategoryListContainerToXml categoryListXmlContainer = new CategoryListContainerToXml();
                 categoryListXmlContainer = mapper.readValue(xml, categoryListXmlContainer.getClass());
@@ -103,7 +102,7 @@ private List<Category> categoryList;
         try {
             CategoryListContainerToXml container = new CategoryListContainerToXml();
             container.setDataList(categoryList);
-            new FileProcessor().writeToFile(ApplicationProperties.categoryFilePath,mapper.writeValueAsString(container));
+            new FileProcessor().writeToFile(ApplicationProperties.CATEGORY_FILE_PATH,mapper.writeValueAsString(container));
         } catch (JsonProcessingException e) {
             logger.error("JsonProcessingException at the UserDaoXML insert method " + e.getMessage());
             Arrays.stream(e.getStackTrace()).forEach(a -> logger.error(a.toString()));

@@ -25,6 +25,7 @@ import java.util.List;
 import java.util.Locale;
 
 public class CategoryTableWindowController extends AbstractController {
+    public Button refreshCategoryTableButton;
     Logger logger = LoggerFactory.getLogger(getClass().getName());
     public TableView<Category> categoryTable;
     public Button categoryBackButton;
@@ -65,6 +66,10 @@ public class CategoryTableWindowController extends AbstractController {
             logger.error("Row not found");
             rowNotFound.printStackTrace();
         }
+        initCategoryTable();
+    }
+
+    public void refreshCategoryTable(ActionEvent actionEvent) {
         initCategoryTable();
     }
 }

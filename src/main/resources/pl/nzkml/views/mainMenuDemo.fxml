@@ -6,5 +6,6 @@
 <AnchorPane maxHeight="400.0" maxWidth="600.0" minHeight="400.0" minWidth="600.0" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.nzkml.controllers.MainMenuWindow">
    <children>
       <Button fx:id="mainMenuCategoryButton" layoutX="64.0" layoutY="42.0" mnemonicParsing="false" onAction="#openCategoryWindow" prefHeight="132.0" prefWidth="177.0" text="category" />
+      <Button fx:id="mainMenuCategoryButton1" layoutX="271.0" layoutY="42.0" mnemonicParsing="false" onAction="#openAddTransportWindow" prefHeight="132.0" prefWidth="177.0" text="TRANSPORT" />
    </children>
 </AnchorPane>

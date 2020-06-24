@@ -20,9 +20,9 @@
             </Menu>
          </menus>
       </MenuBar>
-      <Button fx:id="categoryBackButton" layoutX="21.0" layoutY="678.0" mnemonicParsing="false" onAction="#backButtonAction" prefHeight="25.0" prefWidth="102.0" text="%back" />
-      <Separator layoutX="21.0" layoutY="651.0" prefHeight="6.0" prefWidth="653.0" />
-      <TableView fx:id="categoryTable" layoutX="14.0" layoutY="33.0" prefHeight="565.0" prefWidth="670.0">
+      <Button fx:id="categoryBackButton" layoutX="21.0" layoutY="701.0" mnemonicParsing="false" onAction="#backButtonAction" prefHeight="25.0" prefWidth="102.0" text="%back" />
+      <Separator layoutX="23.0" layoutY="684.0" prefHeight="6.0" prefWidth="653.0" />
+      <TableView fx:id="categoryTable" layoutX="15.0" layoutY="73.0" prefHeight="565.0" prefWidth="670.0">
         <columns>
           <TableColumn fx:id="tableCategoryID" prefWidth="75.0" text="%tableCategoryID" />
           <TableColumn fx:id="tableCategoryName" prefWidth="146.0" text="%tableCategoryName" />
@@ -31,7 +31,8 @@
             <TableColumn fx:id="tableCategoryBoxSize" prefWidth="114.0" text="%tableCategoryBoxSize" />
         </columns>
       </TableView>
-      <Button fx:id="addNewCategoryButton" layoutX="72.0" layoutY="613.0" mnemonicParsing="false" onAction="#addNewCategory" prefHeight="25.0" prefWidth="200.0" text="%addNew" />
-      <Button fx:id="deleteCategoryButton" layoutX="440.0" layoutY="613.0" mnemonicParsing="false" onAction="#deleteCategory" prefHeight="25.0" prefWidth="200.0" text="%delete" />
+      <Button fx:id="addNewCategoryButton" layoutX="72.0" layoutY="649.0" mnemonicParsing="false" onAction="#addNewCategory" prefHeight="25.0" prefWidth="200.0" text="%addNew" />
+      <Button fx:id="deleteCategoryButton" layoutX="440.0" layoutY="649.0" mnemonicParsing="false" onAction="#deleteCategory" prefHeight="25.0" prefWidth="200.0" text="%delete" />
+      <Button fx:id="refreshCategoryTableButton" layoutX="574.0" layoutY="34.0" mnemonicParsing="false" onAction="#refreshCategoryTable" prefHeight="25.0" prefWidth="102.0" text="%refresh" />
    </children>
 </AnchorPane>

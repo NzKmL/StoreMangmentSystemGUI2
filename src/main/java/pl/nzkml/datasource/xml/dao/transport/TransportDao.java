@@ -1,15 +1,13 @@
-package pl.nzkml.datasource.xml.dao.user;
+package pl.nzkml.datasource.xml.dao.transport;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import pl.nzkml.datasource.entity.User;
-import pl.nzkml.datasource.xml.file.FileProcessor;
-
 import pl.nzkml.datasource.CrudDao;
+import pl.nzkml.datasource.entity.Transport;
 import pl.nzkml.datasource.repoException.RowNotFound;
-
+import pl.nzkml.datasource.xml.file.FileProcessor;
 import pl.nzkml.properties.ApplicationProperties;
 
 import java.io.FileNotFoundException;
@@ -18,41 +16,44 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class UserDaoXML implements CrudDao<User> {
+public class TransportDao implements CrudDao<Transport> {
+    List<Transport> transportList;
     Logger logger = LoggerFactory.getLogger(this.getClass());
+
     @Override
-    public void insert(User user) {
+    public void insert(Transport transport) {
         nullOrEmptyOperation();
-        userList.add(user);
+        transportList.add(transport);
         saveToFile();
     }
     @Override
-    public User select(Object login) {
-        if (login==null) return null;
+    public Transport select(Object id) {
+        if (id==null) return null;
 
         nullOrEmptyOperation();
-        if (userList.isEmpty()) {
+        if (transportList.isEmpty()) {
             return null;
         }else{
-            return userList.stream().filter(temp -> (String.valueOf(login)).equals(temp.getLogin())).findAny().orElse(null);
+            return transportList.stream().filter(temp -> (Integer.valueOf((String)id)).equals(temp.getTransportID())).findAny().orElse(null);
         }
     }
-private List<User> userList;
+
     @Override
-    public List<User> selectALL() {
+
+    public List<Transport> selectALL() {
         XmlMapper mapper = new XmlMapper();
 
         FileProcessor fileProcessor = new FileProcessor();
         String xml = null;
         try {
-            xml = fileProcessor.readFile(ApplicationProperties.USER_FILE_PATH);
-           if(!xml.isEmpty()) {
-               UserListContainerToXml userListXmlContainer = new UserListContainerToXml();
-                userListXmlContainer = mapper.readValue(xml, userListXmlContainer.getClass());
-               userList=userListXmlContainer.getDataList();
-           } else {
-               userList = new ArrayList<>();
-           }
+            xml = fileProcessor.readFile(ApplicationProperties.TRANSPORT_FILE_PATH);
+            if(!xml.isEmpty()) {
+                TransportListContainerToXml categoryListXmlContainer = new TransportListContainerToXml();
+                categoryListXmlContainer = mapper.readValue(xml, categoryListXmlContainer.getClass());
+                transportList =categoryListXmlContainer.getDataList();
+            } else {
+                transportList = new ArrayList<>();
+            }
         }
         catch (FileNotFoundException e) {
             logger.error("FileNotFoundException at the UserDaoXML selectALL method " + e.getMessage());
@@ -61,48 +62,48 @@ private List<User> userList;
             Arrays.stream(e.getStackTrace()).forEach(a -> logger.error(a.toString()));
         }
 
-        return userList;
+        return transportList;
     }
 
+
     @Override
-    public void update(User user) throws RowNotFound {
+    public void update(Transport transport) throws RowNotFound {
         nullOrEmptyOperation();
-        userList.remove(select(user.getLogin()));
-        insert(user);
+        transportList.remove(select(transport.getTransportID()));
+        insert(transport);
         saveToFile();
     }
 
     @Override
     public void deleteByID(Object id) throws RowNotFound {
         nullOrEmptyOperation();
-        userList.remove(select(id));
+        transportList.remove(select(id));
         saveToFile();
     }
 
     @Override
-    public void delete(User user) throws RowNotFound {
+    public void delete(Transport transport) throws RowNotFound {
         nullOrEmptyOperation();
-        userList.remove(user);
+        transportList.remove(transport);
         saveToFile();
     }
     private void nullOrEmptyOperation() {
-        if (userList == null || userList.size() == 0) {
+        if (transportList == null || transportList.size() == 0) {
             selectALL();
         }
     }
     private void saveToFile() {
         XmlMapper mapper = new XmlMapper();
         try {
-            UserListContainerToXml container = new  UserListContainerToXml();
-            container.setDataList(userList);
-            new FileProcessor().writeToFile(ApplicationProperties.USER_FILE_PATH,mapper.writeValueAsString(container));
+            TransportListContainerToXml container = new TransportListContainerToXml();
+            container.setDataList(transportList);
+            new FileProcessor().writeToFile(ApplicationProperties.TRANSPORT_FILE_PATH,mapper.writeValueAsString(container));
         } catch (JsonProcessingException e) {
-            logger.error("JsonProcessingException at the UserDaoXML insert method " + e.getMessage());
+            logger.error("JsonProcessingException at the TransportDao insert method " + e.getMessage());
             Arrays.stream(e.getStackTrace()).forEach(a -> logger.error(a.toString()));
         } catch (IOException e) {
-            logger.error("IOException at the UserDaoXML insert method " + e.getMessage());
+            logger.error("IOException at the TransportDao insert method " + e.getMessage());
             Arrays.stream(e.getStackTrace()).forEach(a -> logger.error(a.toString()));
         }
     }
-
 }
