@@ -1,5 +1,7 @@
 package pl.nzkml.datasource.model;
 
+import pl.nzkml.datasource.model.tableElement.TransportElement;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;

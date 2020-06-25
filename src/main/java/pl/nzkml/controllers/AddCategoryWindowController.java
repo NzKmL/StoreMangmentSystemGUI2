@@ -16,7 +16,7 @@ import pl.nzkml.locales.Locales;
 
 import java.util.ResourceBundle;
 
-public class CategoryWindowController extends AbstractController {
+public class AddCategoryWindowController extends AbstractController {
     @FXML
     private TextField categoryNameTextField;
     @FXML

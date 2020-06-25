@@ -46,7 +46,7 @@ public class SMSSceneManager {
 
         } catch (IOException e) {
            logger.error("fxml file load error");
-           logger.error(e.getMessage());
+           logger.error(e.getMessage() + " " + e.getCause());
            Arrays.stream(e.getStackTrace()).forEach(a -> logger.error(a.toString()));
            closeApplication();
         }

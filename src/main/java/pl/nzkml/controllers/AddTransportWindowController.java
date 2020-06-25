@@ -13,13 +13,13 @@ import pl.nzkml.datasource.DataType;
 import pl.nzkml.datasource.RepositoryFactory;
 import pl.nzkml.datasource.model.Category;
 import pl.nzkml.datasource.model.Transport;
-import pl.nzkml.datasource.model.TransportElement;
-import pl.nzkml.datasource.model.TransportTableElement;
+import pl.nzkml.datasource.model.tableElement.TransportElement;
+import pl.nzkml.datasource.model.tableElement.TransportTableElement;
 import pl.nzkml.properties.ApplicationProperties;
 
 import java.util.*;
 
-public class LoadTransportWindowController extends AbstractController{
+public class AddTransportWindowController extends AbstractController{
     public Button transportBuckButton;
     public MenuItem closeMenuBarLoginWindow;
     public Spinner<Integer> numberOfElement;

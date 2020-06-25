@@ -1,7 +1,8 @@
-package pl.nzkml.datasource.model;
+package pl.nzkml.datasource.model.tableElement;
 
 import pl.nzkml.datasource.DataType;
 import pl.nzkml.datasource.RepositoryFactory;
+import pl.nzkml.datasource.model.Category;
 
 import java.util.ArrayList;
 import java.util.List;

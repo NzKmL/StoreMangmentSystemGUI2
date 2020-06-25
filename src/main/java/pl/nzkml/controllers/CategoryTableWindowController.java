@@ -30,9 +30,11 @@ public class CategoryTableWindowController extends AbstractController {
     public TableColumn<Category,Integer> tableCategoryQuantity;
     public TableColumn<Category,String> tableCategoryBoxSize;
 
+
     @FXML
     private void initialize(){
         initCategoryTable();
+        deleteCategoryButton.setDisable(true);
     }
 
     private void initCategoryTable() {
@@ -65,4 +67,5 @@ public class CategoryTableWindowController extends AbstractController {
     public void refreshCategoryTable(ActionEvent actionEvent) {
         initCategoryTable();
     }
+
 }

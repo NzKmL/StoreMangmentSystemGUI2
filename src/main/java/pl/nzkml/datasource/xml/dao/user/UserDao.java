@@ -1,13 +1,15 @@
-package pl.nzkml.datasource.xml.dao.category;
+package pl.nzkml.datasource.xml.dao.user;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import pl.nzkml.datasource.CrudDao;
-import pl.nzkml.datasource.model.Category;
-import pl.nzkml.datasource.repoException.RowNotFound;
+import pl.nzkml.datasource.model.User;
 import pl.nzkml.datasource.xml.file.FileProcessor;
+
+import pl.nzkml.datasource.CrudDao;
+import pl.nzkml.datasource.repoException.RowNotFound;
+
 import pl.nzkml.properties.ApplicationProperties;
 
 import java.io.FileNotFoundException;
@@ -16,49 +18,40 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class CategoryDaoXML implements CrudDao<Category> {
+public class UserDao implements CrudDao<User> {
     Logger logger = LoggerFactory.getLogger(this.getClass());
-    private int maxID=0;
     @Override
-    public void insert(Category category) {
+    public void insert(User user) {
         nullOrEmptyOperation();
-        category.setId(++maxID);
-        categoryList.add(category);
+        userList.add(user);
         saveToFile();
     }
     @Override
-    public Category select(Object id) {
-        if (id==null) return null;
+    public User select(Object login) {
+        if (login==null) return null;
 
         nullOrEmptyOperation();
-        if (categoryList.isEmpty()) {
+        if (userList.isEmpty()) {
             return null;
         }else{
-            return categoryList.stream().filter(temp -> (Integer.valueOf((String)id)).equals(temp.getId())).findAny().orElse(null);
+            return userList.stream().filter(temp -> (String.valueOf(login)).equals(temp.getLogin())).findAny().orElse(null);
         }
     }
-private List<Category> categoryList;
+private List<User> userList;
     @Override
-    public List<Category> selectALL() {
+    public List<User> selectALL() {
         XmlMapper mapper = new XmlMapper();
 
         FileProcessor fileProcessor = new FileProcessor();
         String xml = null;
         try {
-            xml = fileProcessor.readFile(ApplicationProperties.CATEGORY_FILE_PATH);
+            xml = fileProcessor.readFile(ApplicationProperties.USER_FILE_PATH);
            if(!xml.isEmpty()) {
-               CategoryListContainerToXml categoryListXmlContainer = new CategoryListContainerToXml();
-                categoryListXmlContainer = mapper.readValue(xml, categoryListXmlContainer.getClass());
-               categoryList =categoryListXmlContainer.getDataList();
-
-               for (Category temp:categoryList) {
-                   if(maxID<temp.getId()){
-                       maxID=temp.getId();
-                   }
-               }
-
+               UserListContainerToXml userListXmlContainer = new UserListContainerToXml();
+                userListXmlContainer = mapper.readValue(xml, userListXmlContainer.getClass());
+               userList=userListXmlContainer.getDataList();
            } else {
-               categoryList = new ArrayList<>();
+               userList = new ArrayList<>();
            }
         }
         catch (FileNotFoundException e) {
@@ -68,41 +61,41 @@ private List<Category> categoryList;
             Arrays.stream(e.getStackTrace()).forEach(a -> logger.error(a.toString()));
         }
 
-        return categoryList;
+        return userList;
     }
 
     @Override
-    public void update(Category category) throws RowNotFound {
+    public void update(User user) throws RowNotFound {
         nullOrEmptyOperation();
-        categoryList.remove(select(category.getId()));
-        insert(category);
+        userList.remove(select(user.getLogin()));
+        insert(user);
         saveToFile();
     }
 
     @Override
     public void deleteByID(Object id) throws RowNotFound {
         nullOrEmptyOperation();
-        categoryList.remove(select(id));
+        userList.remove(select(id));
         saveToFile();
     }
 
     @Override
-    public void delete(Category categoty) throws RowNotFound {
+    public void delete(User user) throws RowNotFound {
         nullOrEmptyOperation();
-        categoryList.remove(categoty);
+        userList.remove(user);
         saveToFile();
     }
     private void nullOrEmptyOperation() {
-        if (categoryList == null || categoryList.size() == 0) {
+        if (userList == null || userList.size() == 0) {
             selectALL();
         }
     }
     private void saveToFile() {
         XmlMapper mapper = new XmlMapper();
         try {
-            CategoryListContainerToXml container = new CategoryListContainerToXml();
-            container.setDataList(categoryList);
-            new FileProcessor().writeToFile(ApplicationProperties.CATEGORY_FILE_PATH,mapper.writeValueAsString(container));
+            UserListContainerToXml container = new  UserListContainerToXml();
+            container.setDataList(userList);
+            new FileProcessor().writeToFile(ApplicationProperties.USER_FILE_PATH,mapper.writeValueAsString(container));
         } catch (JsonProcessingException e) {
             logger.error("JsonProcessingException at the UserDaoXML insert method " + e.getMessage());
             Arrays.stream(e.getStackTrace()).forEach(a -> logger.error(a.toString()));

@@ -2,19 +2,23 @@ package pl.nzkml.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
+import javafx.stage.Window;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.nzkml.SMSSceneManager;
-import pl.nzkml.StoreManagmentSystemAPP;
 import pl.nzkml.datasource.DataType;
 import pl.nzkml.datasource.RepositoryFactory;
 import pl.nzkml.datasource.model.Category;
+import pl.nzkml.datasource.model.RegistryElement;
+import pl.nzkml.datasource.model.tableElement.TransportElement;
+import pl.nzkml.datasource.model.tableElement.TransportRegistryTableElement;
+import pl.nzkml.datasource.model.tableElement.TransportTableElement;
 import pl.nzkml.datasource.model.Transport;
-import pl.nzkml.datasource.model.TransportRegistryTableElement;
-import pl.nzkml.datasource.model.TransportTableElement;
 import pl.nzkml.datasource.repoException.RowNotFound;
 import pl.nzkml.properties.ApplicationProperties;
 
@@ -93,16 +97,40 @@ public class TransportRegistryController extends AbstractController {
     }
 
     public void acceptTransport(ActionEvent actionEvent) {
+        TransportRegistryTableElement item =  transportRegistryTable.getSelectionModel().getSelectedItem();
+        Transport transport = (Transport) RepositoryFactory.getInstance().createRepository(DataType.TRANSPORT).getByID(item.getTransportID());
+        if(!transport.getAccepted().booleanValue()) {
+
+            for (TransportElement transportElement : transport.getTransportElements()) {
+                RegistryElement registryElement = new RegistryElement();
+                registryElement.setCategoryID(transportElement.getCategoryID());
+                registryElement.setNumberOfItems(transportElement.getQuantity());
+                RepositoryFactory.getInstance().createRepository(DataType.MAIN_REGISTRY).add(registryElement);
+            }
+            transport.setAccepted(true);
+            try {
+                RepositoryFactory.getInstance().createRepository(DataType.TRANSPORT).update(transport);
+            } catch (RowNotFound rowNotFound) {
+                logger.error("Transport not found");
+            }
+        }
+
     }
 
     public void removeTransport(ActionEvent actionEvent) {
-        try {
-            RepositoryFactory.getInstance().createRepository(DataType.TRANSPORT).removeByID(transportRegistryTable.getSelectionModel().getSelectedItem().getTransportID());
-        } catch (RowNotFound rowNotFound) {
-            logger.error("ROW NOT FOUND");
-        }
-        initializeTransportRegistryTableView();
+        TransportRegistryTableElement element = transportRegistryTable.getSelectionModel().getSelectedItem();
+        if(!element.getIsAcceptred().equals("+")){
+                try {
+                    RepositoryFactory.getInstance().createRepository(DataType.TRANSPORT).removeByID(element.getTransportID());
+                } catch (RowNotFound rowNotFound) {
+                    logger.error("ROW NOT FOUND");
+                }
+                initializeTransportRegistryTableView();
         transportElementsTable.getItems().clear();
+        }else{
+            //TODO: pushup "nie wolno kasować przyjętych transportów
+        }
+
     }
 
     public void selectTransportItem(MouseEvent mouseEvent) {
@@ -147,5 +175,9 @@ public class TransportRegistryController extends AbstractController {
 
     public void refreshWidnow(ActionEvent actionEvent) {
         initialize();
+    }
+    public void backButtonAction(ActionEvent actionEvent) {
+        Window window =   ((Node)(actionEvent.getSource())).getScene().getWindow();
+        SMSSceneManager.getInstance().closeAdditionalWindow((Stage)window);
     }
 }

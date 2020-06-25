@@ -1,6 +1,4 @@
-package pl.nzkml.datasource.model;
-
-import java.util.Date;
+package pl.nzkml.datasource.model.tableElement;
 
 public class TransportRegistryTableElement {
     String transportID;

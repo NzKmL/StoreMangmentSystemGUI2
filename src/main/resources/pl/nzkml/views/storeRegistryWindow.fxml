@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.collections.FXCollections?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="863.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.nzkml.controllers.MainRegistryWindow">
+   <children>
+      <Button fx:id="transportBackButton" layoutX="27.0" layoutY="824.0" mnemonicParsing="false" onAction="#backButtonAction" prefHeight="25.0" prefWidth="112.0" text="%back" />
+      <Separator layoutX="13.0" layoutY="65.0" prefHeight="7.0" prefWidth="574.0" />
+      <MenuBar layoutY="2.0" prefHeight="25.0" prefWidth="600.0">
+         <menus>
+            <Menu mnemonicParsing="false" text="%file">
+               <items>
+                  <MenuItem fx:id="closeMenuBarLoginWindow" mnemonicParsing="false" onAction="#closeApplicationByMenuBar" text="%exit" />
+               </items>
+            </Menu>
+         </menus>
+      </MenuBar>
+      <Text layoutX="25.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="%storeRegister" textAlignment="CENTER" wrappingWidth="550.0">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Text>
+      <Text layoutX="35.0" layoutY="575.0" strokeType="OUTSIDE" strokeWidth="0.0" text="%categoryName" wrappingWidth="277.0">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Text>
+      <Text layoutX="35.0" layoutY="610.0" strokeType="OUTSIDE" strokeWidth="0.0" text="%quantity" wrappingWidth="277.0">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Text>
+      <Separator layoutX="10.0" layoutY="802.0" prefHeight="7.0" prefWidth="574.0" />
+      <Button fx:id="transportsManagement" layoutX="61.0" layoutY="761.0" mnemonicParsing="false" onAction="#openTransportManagement" prefHeight="25.0" prefWidth="194.0" text="%transportManagement" />
+      <Separator layoutX="10.0" layoutY="741.0" prefHeight="7.0" prefWidth="574.0" />
+      <TableView fx:id="storeRegistryTable" layoutX="22.0" layoutY="80.0" onMouseClicked="#selectRegistryTableItem" prefHeight="422.0" prefWidth="550.0">
+         <columns>
+            <TableColumn fx:id="storeRegistryCategoryName" prefWidth="391.0" text="%categoryName" />
+            <TableColumn fx:id="storeRegistryItemsNumber" prefWidth="158.0" text="%numberOfItems" />
+         </columns>
+      </TableView>
+      <Separator layoutX="10.0" layoutY="542.0" prefHeight="7.0" prefWidth="574.0" />
+      <TextField fx:id="categoryName" editable="false" layoutX="328.0" layoutY="556.0" mouseTransparent="true" prefHeight="25.0" prefWidth="246.0" />
+      <TextField fx:id="quantity" editable="false" layoutX="328.0" layoutY="591.0" mouseTransparent="true" prefHeight="25.0" prefWidth="246.0" />
+      <Text layoutX="35.0" layoutY="646.0" strokeType="OUTSIDE" strokeWidth="0.0" text="%categoryMetric" wrappingWidth="277.0">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Text>
+      <Text layoutX="35.0" layoutY="679.0" strokeType="OUTSIDE" strokeWidth="0.0" text="%categoryBoxQuantity" wrappingWidth="246.0">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Text>
+      <Text layoutX="37.0" layoutY="712.0" strokeType="OUTSIDE" strokeWidth="0.0" text="%boxSize" wrappingWidth="246.0">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Text>
+      <ComboBox fx:id="categoryBoxSize" layoutX="328.0" layoutY="693.0" mouseTransparent="true" pickOnBounds="false" prefHeight="25.0" prefWidth="246.0">
+         <items>
+            <FXCollections fx:factory="observableArrayList" />
+         </items>
+      </ComboBox>
+      <ComboBox fx:id="categoryMetricField" layoutX="328.0" layoutY="626.0" mouseTransparent="true" pickOnBounds="false" prefHeight="25.0" prefWidth="246.0">
+         <items>
+            <FXCollections fx:factory="observableArrayList" />
+         </items>
+      </ComboBox>
+      <Spinner fx:id="categoryBoxQuantityField" amountToStepBy="1" initialValue="0" layoutX="328.0" layoutY="660.0" max="20000" min="0" mouseTransparent="true" pickOnBounds="false" prefHeight="25.0" prefWidth="246.0" />
+      <Button fx:id="orderManagement" layoutX="354.0" layoutY="761.0" mnemonicParsing="false" onAction="#openOrderManagementWindow" prefHeight="25.0" prefWidth="194.0" text="%orderManagement" />
+      <Button fx:id="refreshStoreRefisterTableButton" layoutX="436.0" layoutY="509.0" mnemonicParsing="false" onAction="#refreshStoreRegisterTable" prefHeight="25.0" prefWidth="112.0" text="%refresh" />
+   </children>
+</AnchorPane>

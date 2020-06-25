@@ -1,4 +1,4 @@
-package pl.nzkml.datasource.model;
+package pl.nzkml.datasource.model.tableElement;
 
 public class TransportElement {
         int no;
