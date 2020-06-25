@@ -58,7 +58,7 @@ public class MainRegistryDao implements CrudDao<RegistryElement> {
         FileProcessor fileProcessor = new FileProcessor();
         String xml = null;
         try {
-            xml = fileProcessor.readFile(ApplicationProperties.MAIN_STORE_REGISTRY);
+            xml = fileProcessor.readFile(ApplicationProperties.MAIN_STORE_REGISTRY_FILE_PATH);
            if(!xml.isEmpty()) {
                StoreRegistryListContainerToXml userListXmlContainer = new StoreRegistryListContainerToXml();
                 userListXmlContainer = mapper.readValue(xml, userListXmlContainer.getClass());
@@ -108,7 +108,7 @@ public class MainRegistryDao implements CrudDao<RegistryElement> {
         try {
             StoreRegistryListContainerToXml container = new StoreRegistryListContainerToXml();
             container.setDataList(itemsList);
-            new FileProcessor().writeToFile(ApplicationProperties.MAIN_STORE_REGISTRY,mapper.writeValueAsString(container));
+            new FileProcessor().writeToFile(ApplicationProperties.MAIN_STORE_REGISTRY_FILE_PATH,mapper.writeValueAsString(container));
         } catch (JsonProcessingException e) {
             logger.error("JsonProcessingException at the UserDaoXML insert method " + e.getMessage());
             Arrays.stream(e.getStackTrace()).forEach(a -> logger.error(a.toString()));

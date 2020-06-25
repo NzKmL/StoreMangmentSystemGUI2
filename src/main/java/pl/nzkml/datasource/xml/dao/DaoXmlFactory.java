@@ -9,6 +9,7 @@ import pl.nzkml.datasource.DataType;
 import pl.nzkml.datasource.DataSourceType;
 import pl.nzkml.datasource.xml.dao.category.CategoryDao;
 import pl.nzkml.datasource.xml.dao.mainRegistry.MainRegistryDao;
+import pl.nzkml.datasource.xml.dao.order.OrderDao;
 import pl.nzkml.datasource.xml.dao.transport.TransportDao;
 import pl.nzkml.datasource.xml.dao.user.UserDao;
 import pl.nzkml.properties.ApplicationProperties;
@@ -38,6 +39,9 @@ public class DaoXmlFactory implements DaoFactory {
         }
         else if(type.equals(DataType.MAIN_REGISTRY)){
             return new MainRegistryDao();
+        }
+        else if(type.equals(DataType.ORDER)){
+            return new OrderDao();
         }
         else{
             logger.error("Dao not found for the data type enum");

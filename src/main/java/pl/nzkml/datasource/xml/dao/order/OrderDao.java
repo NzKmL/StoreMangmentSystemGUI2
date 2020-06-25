@@ -1,11 +1,11 @@
-package pl.nzkml.datasource.xml.dao.transport;
+package pl.nzkml.datasource.xml.dao.order;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.nzkml.datasource.CrudDao;
-import pl.nzkml.datasource.model.Transport;
+import pl.nzkml.datasource.model.Order;
 import pl.nzkml.datasource.repoException.RowNotFound;
 import pl.nzkml.datasource.xml.file.FileProcessor;
 import pl.nzkml.properties.ApplicationProperties;
@@ -16,43 +16,42 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class TransportDao implements CrudDao<Transport> {
-    List<Transport> transportList;
+public class OrderDao implements CrudDao<Order> {
+    List<Order> orderList;
     Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Override
-    public void insert(Transport transport) {
+    public void insert(Order order) {
         nullOrEmptyOperation();
-        transportList.add(transport);
+        orderList.add(order);
         saveToFile();
     }
     @Override
-    public Transport select(Object id) {
+    public Order select(Object id) {
         if (id==null) return null;
 
         nullOrEmptyOperation();
-        if (transportList.isEmpty()) {
+        if (orderList.isEmpty()) {
             return null;
         }else{
-            return transportList.stream().filter(temp -> (id).equals(temp.getTransportID())).findAny().orElse(null);
+            return orderList.stream().filter(temp -> (id).equals(temp.getOrderID())).findAny().orElse(null);
         }
     }
 
     @Override
-
-    public List<Transport> selectALL() {
+    public List<Order> selectALL() {
         XmlMapper mapper = new XmlMapper();
 
         FileProcessor fileProcessor = new FileProcessor();
         String xml = null;
         try {
-            xml = fileProcessor.readFile(ApplicationProperties.TRANSPORT_FILE_PATH);
+            xml = fileProcessor.readFile(ApplicationProperties.ORDER_FILE_PATH);
             if(!xml.isEmpty()) {
-                TransportListContainerToXml orderListXmlContainer = new TransportListContainerToXml();
+                OrderListContainerToXml orderListXmlContainer = new OrderListContainerToXml();
                 orderListXmlContainer = mapper.readValue(xml, orderListXmlContainer.getClass());
-                transportList =orderListXmlContainer.getDataList();
+                orderList =orderListXmlContainer.getDataList();
             } else {
-                transportList = new ArrayList<>();
+                orderList = new ArrayList<>();
             }
         }
         catch (FileNotFoundException e) {
@@ -61,43 +60,43 @@ public class TransportDao implements CrudDao<Transport> {
             logger.error("IOException at the UserDaoXML selectALL method " + e.getMessage());
             Arrays.stream(e.getStackTrace()).forEach(a -> logger.error(a.toString()));
         }
-        if(transportList==null)transportList= new ArrayList<>();
-        return transportList;
+
+        return orderList;
     }
 
 
     @Override
-    public void update(Transport transport) throws RowNotFound {
+    public void update(Order order) throws RowNotFound {
         nullOrEmptyOperation();
-        transportList.remove(select(transport.getTransportID()));
-        insert(transport);
+        orderList.remove(select(order.getOrderID()));
+        insert(order);
         saveToFile();
     }
 
     @Override
     public void deleteByID(Object id) throws RowNotFound {
         nullOrEmptyOperation();
-        transportList.remove(select(id));
+        orderList.remove(select(id));
         saveToFile();
     }
 
     @Override
-    public void delete(Transport transport) throws RowNotFound {
+    public void delete(Order order) throws RowNotFound {
         nullOrEmptyOperation();
-        transportList.remove(transport);
+        orderList.remove(order);
         saveToFile();
     }
     private void nullOrEmptyOperation() {
-        if (transportList == null || transportList.size() == 0) {
+        if (orderList == null || orderList.size() == 0) {
             selectALL();
         }
     }
     private void saveToFile() {
         XmlMapper mapper = new XmlMapper();
         try {
-            TransportListContainerToXml container = new TransportListContainerToXml();
-            container.setDataList(transportList);
-            new FileProcessor().writeToFile(ApplicationProperties.TRANSPORT_FILE_PATH,mapper.writeValueAsString(container));
+            OrderListContainerToXml container = new OrderListContainerToXml();
+            container.setDataList(orderList);
+            new FileProcessor().writeToFile(ApplicationProperties.ORDER_FILE_PATH,mapper.writeValueAsString(container));
         } catch (JsonProcessingException e) {
             logger.error("JsonProcessingException at the TransportDao insert method " + e.getMessage());
             Arrays.stream(e.getStackTrace()).forEach(a -> logger.error(a.toString()));
