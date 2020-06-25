@@ -1,4 +1,4 @@
-package pl.nzkml.datasource.model.tableElement;
+package pl.nzkml.datasource.model.categoryListElement;
 
 public abstract class TransferElement {
     int no;

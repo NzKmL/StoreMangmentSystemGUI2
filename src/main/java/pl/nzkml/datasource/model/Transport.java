@@ -1,6 +1,6 @@
 package pl.nzkml.datasource.model;
 
-import pl.nzkml.datasource.model.tableElement.TransportElement;
+import pl.nzkml.datasource.model.categoryListElement.TransportElement;
 
 import java.util.ArrayList;
 import java.util.Date;

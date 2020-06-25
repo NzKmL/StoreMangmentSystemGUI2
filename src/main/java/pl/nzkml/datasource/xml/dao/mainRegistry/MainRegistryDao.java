@@ -73,7 +73,7 @@ public class MainRegistryDao implements CrudDao<RegistryElement> {
             logger.error("IOException at the UserDaoXML selectALL method " + e.getMessage());
             Arrays.stream(e.getStackTrace()).forEach(a -> logger.error(a.toString()));
         }
-
+        if(itemsList==null)itemsList=new ArrayList<>();
         return itemsList;
     }
 

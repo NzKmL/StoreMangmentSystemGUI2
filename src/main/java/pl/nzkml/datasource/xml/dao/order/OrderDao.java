@@ -60,7 +60,7 @@ public class OrderDao implements CrudDao<Order> {
             logger.error("IOException at the UserDaoXML selectALL method " + e.getMessage());
             Arrays.stream(e.getStackTrace()).forEach(a -> logger.error(a.toString()));
         }
-
+        if(orderList==null) orderList = new ArrayList<>();
         return orderList;
     }
 

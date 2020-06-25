@@ -12,10 +12,8 @@ import pl.nzkml.datasource.DataType;
 import pl.nzkml.datasource.RepositoryFactory;
 import pl.nzkml.datasource.model.Category;
 import pl.nzkml.datasource.model.Order;
-import pl.nzkml.datasource.model.tableElement.OrderElement;
+import pl.nzkml.datasource.model.categoryListElement.OrderElement;
 import pl.nzkml.datasource.model.tableElement.OrderTableElements;
-import pl.nzkml.datasource.model.tableElement.TransportElement;
-import pl.nzkml.datasource.model.tableElement.TransportTableElement;
 
 import java.util.*;
 

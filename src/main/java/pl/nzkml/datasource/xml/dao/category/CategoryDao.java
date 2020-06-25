@@ -67,7 +67,7 @@ private List<Category> categoryList;
             logger.error("IOException at the UserDaoXML selectALL method " + e.getMessage());
             Arrays.stream(e.getStackTrace()).forEach(a -> logger.error(a.toString()));
         }
-
+      if(categoryList==null)  categoryList = new ArrayList<>();
         return categoryList;
     }
 

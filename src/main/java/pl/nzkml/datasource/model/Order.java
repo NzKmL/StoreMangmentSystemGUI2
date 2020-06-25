@@ -1,8 +1,6 @@
 package pl.nzkml.datasource.model;
 
-import pl.nzkml.datasource.model.tableElement.OrderElement;
-import pl.nzkml.datasource.model.tableElement.TransferElement;
-import pl.nzkml.datasource.model.tableElement.TransportElement;
+import pl.nzkml.datasource.model.categoryListElement.OrderElement;
 
 import java.util.ArrayList;
 import java.util.Date;

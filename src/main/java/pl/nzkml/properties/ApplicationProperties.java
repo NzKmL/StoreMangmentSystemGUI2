@@ -12,7 +12,7 @@ public static final String TRANSPORT_FILE_PATH = "src\\main\\resources\\filesDat
 public static final String MAIN_STORE_REGISTRY_FILE_PATH = "src\\main\\resources\\filesDataSource\\MainRegistry.xml";
 public static final String ORDER_FILE_PATH = "src\\main\\resources\\filesDataSource\\Order.xml";
 public static final DataSourceType DATE_SOURCE_TYPE = DataSourceType.XML;
-public static final String START_FXML_FILE = "transportRegistryWindow";
+public static final String START_FXML_FILE = "orderRegistryWindow";
 public static final String MAIN_MENU = "mainMenuDemo";
 
     public static final String CATEGORY_LIST_WINDOW = "categoryListWindow";
@@ -21,4 +21,5 @@ public static final String MAIN_MENU = "mainMenuDemo";
     public static final String TRANSPORT_REGISTRY_WIDNOW = "transportRegistryWindow";
     public static final String MAIN_REGISTRY_WINDOW = "storeRegistryWindow";
     public static final String ADD_ORDER_WINDOW = "addOrderWindow";
+    public static final String ORDER_REGISTRY_WINDOW = "orderRegistryWindow";
 }

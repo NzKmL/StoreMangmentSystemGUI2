@@ -15,7 +15,7 @@ import pl.nzkml.datasource.DataType;
 import pl.nzkml.datasource.RepositoryFactory;
 import pl.nzkml.datasource.model.Category;
 import pl.nzkml.datasource.model.RegistryElement;
-import pl.nzkml.datasource.model.tableElement.TransportElement;
+import pl.nzkml.datasource.model.categoryListElement.TransportElement;
 import pl.nzkml.datasource.model.tableElement.TransportRegistryTableElement;
 import pl.nzkml.datasource.model.tableElement.TransportTableElement;
 import pl.nzkml.datasource.model.Transport;
