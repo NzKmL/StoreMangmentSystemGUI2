@@ -58,12 +58,8 @@ public class TransportRegistryController extends AbstractController {
 
     @FXML
     private void initialize(){
-
         initializeCategoryMap();
-
         initializeTransportRegistryTableView();
-
-
     }
 
     private void initializeTransportRegistryTableView() {
@@ -72,9 +68,7 @@ public class TransportRegistryController extends AbstractController {
         List<TransportRegistryTableElement> trte = new ArrayList<>();
 
         for(Transport transport : transportList){
-        //   String date =  new SimpleDateFormat("yyyy-mm-dd").format(transport.getDate());
-
-            trte.add(
+           trte.add(
                     new TransportRegistryTableElement(
                             transport.getTransportID(),
                             new SimpleDateFormat("yyyy-mm-dd").format(transport.getDate()),
