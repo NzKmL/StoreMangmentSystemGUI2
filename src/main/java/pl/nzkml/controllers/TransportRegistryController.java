@@ -10,7 +10,7 @@ import javafx.stage.Stage;
 import javafx.stage.Window;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import pl.nzkml.SMSSceneManager;
+import pl.nzkml.WMSSceneManager;
 import pl.nzkml.datasource.DataType;
 import pl.nzkml.datasource.RepositoryFactory;
 import pl.nzkml.datasource.model.Category;
@@ -164,14 +164,14 @@ public class TransportRegistryController extends AbstractController {
     }
 
     public void addNewTransport(ActionEvent actionEvent) {
-        SMSSceneManager.getInstance().openNewWindow(ApplicationProperties.ADD_TRANPOSRT_WINDOW);
+        WMSSceneManager.getInstance().openNewWindow(ApplicationProperties.ADD_TRANPOSRT_WINDOW);
     }
 
     public void refreshWidnow(ActionEvent actionEvent) {
         initialize();
     }
-    public void backButtonAction(ActionEvent actionEvent) {
+    /*public void backButtonAction(ActionEvent actionEvent) {
         Window window =   ((Node)(actionEvent.getSource())).getScene().getWindow();
-        SMSSceneManager.getInstance().closeAdditionalWindow((Stage)window);
-    }
+        WMSSceneManager.getInstance().closeAdditionalWindow((Stage)window);
+    }*/
 }

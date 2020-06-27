@@ -8,7 +8,7 @@ import javafx.scene.control.Spinner;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.stage.Window;
-import pl.nzkml.SMSSceneManager;
+import pl.nzkml.WMSSceneManager;
 import pl.nzkml.datasource.DataType;
 import pl.nzkml.datasource.RepositoryFactory;
 import pl.nzkml.datasource.model.Category;
@@ -50,7 +50,7 @@ public class AddCategoryWindowController extends AbstractController {
     }
     public void backButtonAction(ActionEvent actionEvent) {
         Window window =   ((Node)(actionEvent.getSource())).getScene().getWindow();
-        SMSSceneManager.getInstance().closeAdditionalWindow((Stage)window);
+        WMSSceneManager.getInstance().closeAdditionalWindow((Stage)window);
     }
 
     public void cleanButtonAction(ActionEvent actionEvent) {
@@ -69,6 +69,6 @@ public class AddCategoryWindowController extends AbstractController {
         RepositoryFactory.getInstance().createRepository(DataType.CATEGORY).add(category);
 
         Window window =   ((Node)(actionEvent.getSource())).getScene().getWindow();
-        SMSSceneManager.getInstance().closeAdditionalWindow((Stage)window);
+        WMSSceneManager.getInstance().closeAdditionalWindow((Stage)window);
     }
 }

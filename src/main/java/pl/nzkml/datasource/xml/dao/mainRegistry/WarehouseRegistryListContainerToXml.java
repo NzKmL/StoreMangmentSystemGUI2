@@ -5,7 +5,7 @@ import pl.nzkml.datasource.model.User;
 
 import java.util.List;
 
-public class StoreRegistryListContainerToXml {
+public class WarehouseRegistryListContainerToXml {
     List<RegistryElement> dataList;
 
     public List<RegistryElement> getDataList() {

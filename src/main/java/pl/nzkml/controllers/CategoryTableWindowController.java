@@ -8,7 +8,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import pl.nzkml.SMSSceneManager;
+import pl.nzkml.WMSSceneManager;
 import pl.nzkml.datasource.DataType;
 import pl.nzkml.datasource.RepositoryFactory;
 import pl.nzkml.datasource.model.Category;
@@ -52,7 +52,7 @@ public class CategoryTableWindowController extends AbstractController {
     }
 
     public void addNewCategory(ActionEvent actionEvent) {
-        SMSSceneManager.getInstance().openNewWindow(ApplicationProperties.NEW_CATEGORY_WINDOW);
+        WMSSceneManager.getInstance().openNewWindow(ApplicationProperties.NEW_CATEGORY_WINDOW);
     }
     public void deleteCategory(ActionEvent actionEvent) {
         try {

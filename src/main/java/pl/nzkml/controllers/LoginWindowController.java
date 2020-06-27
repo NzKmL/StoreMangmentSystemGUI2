@@ -14,7 +14,7 @@ import javafx.stage.Stage;
 import javafx.stage.Window;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import pl.nzkml.SMSSceneManager;
+import pl.nzkml.WMSSceneManager;
 import pl.nzkml.authentication.AuthenticationService;
 import pl.nzkml.locales.Locales;
 
@@ -46,7 +46,7 @@ public class LoginWindowController extends AbstractController {
         AuthenticationService authenticationService = new AuthenticationService();
 
         if( authenticationService.isPasswordCorrect(login, password)){
-            SMSSceneManager.getInstance().setScene("mainMenuDemo");
+            WMSSceneManager.getInstance().setScene("mainMenuDemo");
          logger.info("user login="+login+" został zalogowany");
         }
         else {
@@ -59,7 +59,7 @@ public class LoginWindowController extends AbstractController {
     }
     public void backButtonAction(ActionEvent actionEvent) {
         Window window =   ((Node)(actionEvent.getSource())).getScene().getWindow();
-        SMSSceneManager.getInstance().closeAdditionalWindow((Stage)window);
+        WMSSceneManager.getInstance().closeAdditionalWindow((Stage)window);
     }
 
     @FXML
@@ -69,7 +69,7 @@ public class LoginWindowController extends AbstractController {
 
     public void changeApplicationLanguage() {
         Locale locale = Locales.getInstance().getLocaleByLanguage((String)languageComboBox.getSelectionModel().selectedItemProperty().getValue());
-        SMSSceneManager.getInstance().setLanguage(locale);
+        WMSSceneManager.getInstance().setLanguage(locale);
     }
 
     public void onShowing(Event event) {

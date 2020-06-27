@@ -1,29 +1,25 @@
 package pl.nzkml;
 
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.util.Locale;
-import java.util.ResourceBundle;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 /**
  * JavaFX App
  */
-public class StoreManagmentSystemAPP extends Application {
+public class WarehouseManagmentSystemAPP extends Application {
 
-    private static final  Logger logger = LoggerFactory.getLogger(StoreManagmentSystemAPP.class);
+    private static final  Logger logger = LoggerFactory.getLogger(WarehouseManagmentSystemAPP.class);
 
 
     @Override
     public void start(Stage stage) throws IOException {
         logger.info("Application Start");
         stage.sizeToScene();
-        SMSSceneManager.getInstance().firstScene(stage);
+        WMSSceneManager.getInstance().firstScene(stage);
 
     }
 

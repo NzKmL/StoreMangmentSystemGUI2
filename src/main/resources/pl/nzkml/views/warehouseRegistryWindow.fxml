@@ -28,7 +28,7 @@
             </Menu>
          </menus>
       </MenuBar>
-      <Text layoutX="25.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="%storeRegister" textAlignment="CENTER" wrappingWidth="550.0">
+      <Text layoutX="25.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="%warehouseRegister" textAlignment="CENTER" wrappingWidth="550.0">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
@@ -46,10 +46,10 @@
       <Separator layoutX="10.0" layoutY="802.0" prefHeight="7.0" prefWidth="574.0" />
       <Button fx:id="transportsManagement" layoutX="61.0" layoutY="761.0" mnemonicParsing="false" onAction="#openTransportManagement" prefHeight="25.0" prefWidth="194.0" text="%transportManagement" />
       <Separator layoutX="10.0" layoutY="741.0" prefHeight="7.0" prefWidth="574.0" />
-      <TableView fx:id="storeRegistryTable" layoutX="22.0" layoutY="80.0" onMouseClicked="#selectRegistryTableItem" prefHeight="422.0" prefWidth="550.0">
+      <TableView fx:id="warehouseRegistryTable" layoutX="22.0" layoutY="80.0" onMouseClicked="#selectRegistryTableItem" prefHeight="422.0" prefWidth="550.0">
          <columns>
-            <TableColumn fx:id="storeRegistryCategoryName" prefWidth="391.0" text="%categoryName" />
-            <TableColumn fx:id="storeRegistryItemsNumber" prefWidth="158.0" text="%numberOfItems" />
+            <TableColumn fx:id="warehouseRegistryCategoryName" prefWidth="391.0" text="%categoryName" />
+            <TableColumn fx:id="warehouseRegistryItemsNumber" prefWidth="158.0" text="%numberOfItems" />
          </columns>
       </TableView>
       <Separator layoutX="10.0" layoutY="542.0" prefHeight="7.0" prefWidth="574.0" />
@@ -82,6 +82,6 @@
       </ComboBox>
       <Spinner fx:id="categoryBoxQuantityField" amountToStepBy="1" initialValue="0" layoutX="328.0" layoutY="660.0" max="20000" min="0" mouseTransparent="true" pickOnBounds="false" prefHeight="25.0" prefWidth="246.0" />
       <Button fx:id="orderManagement" layoutX="354.0" layoutY="761.0" mnemonicParsing="false" onAction="#openOrderManagementWindow" prefHeight="25.0" prefWidth="194.0" text="%orderManagement" />
-      <Button fx:id="refreshStoreRefisterTableButton" layoutX="436.0" layoutY="509.0" mnemonicParsing="false" onAction="#refreshStoreRegisterTable" prefHeight="25.0" prefWidth="112.0" text="%refresh" />
+      <Button fx:id="refreshWarehouseRefisterTableButton" layoutX="436.0" layoutY="509.0" mnemonicParsing="false" onAction="#refreshWarehouseRegisterTable" prefHeight="25.0" prefWidth="112.0" text="%refresh" />
    </children>
 </AnchorPane>

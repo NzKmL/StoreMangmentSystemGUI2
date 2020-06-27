@@ -13,23 +13,24 @@ import pl.nzkml.properties.ApplicationProperties;
 import java.io.IOException;
 import java.util.*;
 
-public class SMSSceneManager {
+public class WMSSceneManager {
 
-    private static SMSSceneManager instance = null;
-    private static final Logger logger = LoggerFactory.getLogger(StoreManagmentSystemAPP.class);
+    private static WMSSceneManager instance = null;
+    private static final Logger logger = LoggerFactory.getLogger(WarehouseManagmentSystemAPP.class);
     private static Scene scene;
     private String fxml;
     private String fxmlBack;
     private Map<String, Stage> stagemap = new HashMap<>();
-    private SMSSceneManager(){
-    fxml = ApplicationProperties.START_FXML_FILE;
-    }
     private Stage stage;
 
-    public static SMSSceneManager getInstance() {
+    private WMSSceneManager(){
+    fxml = ApplicationProperties.START_FXML_FILE;
+    }
+
+    public static WMSSceneManager getInstance() {
         logger.debug("create instance");
         if (instance == null) {
-            instance = new SMSSceneManager();
+            instance = new WMSSceneManager();
         }
         return instance;
     }

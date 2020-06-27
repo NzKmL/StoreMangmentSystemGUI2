@@ -7,7 +7,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import javafx.stage.Window;
-import pl.nzkml.SMSSceneManager;
+import pl.nzkml.WMSSceneManager;
 import pl.nzkml.datasource.DataType;
 import pl.nzkml.datasource.RepositoryFactory;
 import pl.nzkml.datasource.model.Category;
@@ -88,10 +88,10 @@ public class AddOrderWindowController extends AbstractController{
         order.setOrderDate(new Date());
         order.setRealized(false);
         RepositoryFactory.getInstance().createRepository(DataType.ORDER).add(order);
-        SMSSceneManager.getInstance().backToPreviosu();
+        WMSSceneManager.getInstance().backToPreviosu();
     }
     public void backButtonAction(ActionEvent actionEvent) {
         Window window =   ((Node)(actionEvent.getSource())).getScene().getWindow();
-        SMSSceneManager.getInstance().closeAdditionalWindow((Stage)window);
+        WMSSceneManager.getInstance().closeAdditionalWindow((Stage)window);
     }
 }

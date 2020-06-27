@@ -8,16 +8,13 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.stage.Window;
-import pl.nzkml.SMSSceneManager;
+import pl.nzkml.WMSSceneManager;
 import pl.nzkml.datasource.DataType;
 import pl.nzkml.datasource.Repository;
 import pl.nzkml.datasource.RepositoryFactory;
 import pl.nzkml.datasource.model.Category;
 import pl.nzkml.datasource.model.RegistryElement;
-import pl.nzkml.datasource.model.Transport;
 import pl.nzkml.datasource.model.tableElement.MainRegistryTableElement;
-import pl.nzkml.datasource.model.tableElement.TransportRegistryTableElement;
-import pl.nzkml.datasource.model.tableElement.TransportTableElement;
 import pl.nzkml.properties.ApplicationProperties;
 
 import java.util.ArrayList;
@@ -29,9 +26,9 @@ public class MainRegistryWindow extends AbstractController {
     public Button transportBackButton;
     public MenuItem closeMenuBarLoginWindow;
     public Button transportsManagement;
-    public TableView<MainRegistryTableElement> storeRegistryTable;
-    public TableColumn< MainRegistryTableElement,String> storeRegistryCategoryName;
-    public TableColumn< MainRegistryTableElement,Integer> storeRegistryItemsNumber;
+    public TableView<MainRegistryTableElement> warehouseRegistryTable;
+    public TableColumn< MainRegistryTableElement,String> warehouseRegistryCategoryName;
+    public TableColumn< MainRegistryTableElement,Integer> warehouseRegistryItemsNumber;
     public TextField categoryName;
     public TextField quantity;
     public ComboBox categoryBoxSize;
@@ -45,7 +42,7 @@ public class MainRegistryWindow extends AbstractController {
 
         List<Category> categoryList = RepositoryFactory.getInstance().createRepository(DataType.CATEGORY).getAllElements();
         categoryMap = categoryList.stream().collect(
-                Collectors.toMap(c->c.getName(), c->c));
+        Collectors.toMap(c->c.getName(), c->c));
     }
 
     @FXML
@@ -57,7 +54,7 @@ public class MainRegistryWindow extends AbstractController {
     }
 
     private void initializeRegistryTable() {
-        storeRegistryTable.getItems().clear();
+        warehouseRegistryTable.getItems().clear();
         mainTableList.clear();
         List<RegistryElement> registryElementList =   RepositoryFactory.getInstance().createRepository(DataType.MAIN_REGISTRY).getAllElements();
 
@@ -69,18 +66,18 @@ public class MainRegistryWindow extends AbstractController {
                     mainTableList.add(new MainRegistryTableElement(category.getName(), temp.getNumberOfItems()));
                 }
             }
-            storeRegistryCategoryName.setCellValueFactory(new PropertyValueFactory<MainRegistryTableElement, String>("categoryName"));
-            storeRegistryItemsNumber.setCellValueFactory(new PropertyValueFactory<MainRegistryTableElement, Integer>("numberOfItems"));
-            storeRegistryTable.getItems().addAll(mainTableList);
+            warehouseRegistryCategoryName.setCellValueFactory(new PropertyValueFactory<MainRegistryTableElement, String>("categoryName"));
+            warehouseRegistryItemsNumber.setCellValueFactory(new PropertyValueFactory<MainRegistryTableElement, Integer>("numberOfItems"));
+            warehouseRegistryTable.getItems().addAll(mainTableList);
         }
     }
 
     public void openTransportManagement(ActionEvent actionEvent) {
-        SMSSceneManager.getInstance().openNewWindow(ApplicationProperties.TRANSPORT_REGISTRY_WIDNOW);
+        WMSSceneManager.getInstance().openNewWindow(ApplicationProperties.TRANSPORT_REGISTRY_WINDOW);
     }
 
     public void selectRegistryTableItem(MouseEvent mouseEvent) {
-        MainRegistryTableElement item =  storeRegistryTable.getSelectionModel().getSelectedItem();
+        MainRegistryTableElement item =  warehouseRegistryTable.getSelectionModel().getSelectedItem();
         if(item==null){
             return;
         }
@@ -93,21 +90,20 @@ public class MainRegistryWindow extends AbstractController {
             categoryMetricField.setValue(category.getMetric());
             categoryBoxQuantityField.getValueFactory().setValue(category.getBoxQuantity());
             categoryBoxSize.setValue(category.getBoxSize());
-
         }
     }
 
 
     public void openOrderManagementWindow(ActionEvent actionEvent) {
-       //TODO ORDERS
-        // SMSSceneManager.getInstance().openNewWindow(ApplicationProperties.Ord);
+         WMSSceneManager.getInstance().openNewWindow(ApplicationProperties.ORDER_REGISTRY_WINDOW);
     }
-    public void backButtonAction(ActionEvent actionEvent) {
+   /* public void backButtonAction(ActionEvent actionEvent) {
         Window window =   ((Node)(actionEvent.getSource())).getScene().getWindow();
-        SMSSceneManager.getInstance().closeAdditionalWindow((Stage)window);
-    }
+        WMSSceneManager.getInstance().closeAdditionalWindow((Stage)window);
+    }*/
 
-    public void refreshStoreRegisterTable(ActionEvent actionEvent) {
+    public void refreshWarehouseRegisterTable(ActionEvent actionEvent) {
         initializeRegistryTable();
     }
+
 }

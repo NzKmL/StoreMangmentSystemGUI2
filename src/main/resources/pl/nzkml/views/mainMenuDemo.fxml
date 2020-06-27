@@ -1,11 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="400.0" maxWidth="600.0" minHeight="400.0" minWidth="600.0" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.nzkml.controllers.MainMenuWindow">
+<AnchorPane maxHeight="441.0" maxWidth="600.0" minHeight="350.0" minWidth="504.0" prefHeight="441.0" prefWidth="505.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.nzkml.controllers.MainMenuWindow">
    <children>
-      <Button fx:id="mainMenuCategoryButton" layoutX="64.0" layoutY="42.0" mnemonicParsing="false" onAction="#openCategoryWindow" prefHeight="132.0" prefWidth="177.0" text="category" />
-      <Button fx:id="mainMenuCategoryButton1" layoutX="271.0" layoutY="42.0" mnemonicParsing="false" onAction="#openAddTransportWindow" prefHeight="132.0" prefWidth="177.0" text="TRANSPORT" />
+      <Button fx:id="openCategoryWindowButton" layoutX="267.0" layoutY="248.0" mnemonicParsing="false" onAction="#openCategoryWindow" prefHeight="132.0" prefWidth="177.0" text="%categoryManagment" />
+      <Button fx:id="openTransportWindowButton" layoutX="267.0" layoutY="100.0" mnemonicParsing="false" onAction="#openTransportWindow" prefHeight="132.0" prefWidth="177.0" text="%transport" />
+      <Button fx:id="openOrdersWindowButton" layoutX="60.0" layoutY="248.0" mnemonicParsing="false" onAction="#openOrdersWindow" prefHeight="132.0" prefWidth="177.0" text="%orders" />
+      <Button fx:id="openRegisterWindowButton" layoutX="60.0" layoutY="100.0" mnemonicParsing="false" onAction="#openRegisterWindow" prefHeight="132.0" prefWidth="177.0" text="%mainRegister" />
+      <Separator layoutX="17.0" layoutY="84.0" prefHeight="0.0" prefWidth="471.0" />
+      <Label alignment="CENTER" layoutX="27.0" layoutY="27.0" prefHeight="53.0" prefWidth="452.0" text="%warehouseManagementSystem" textAlignment="CENTER">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Button fx:id="backButton" layoutX="17.0" layoutY="402.0" mnemonicParsing="false" onAction="#backButtonAction" prefHeight="18.0" prefWidth="100.0" text="%back" />
+      <Separator layoutX="17.0" layoutY="393.0" prefHeight="0.0" prefWidth="471.0" />
+      <MenuBar layoutY="2.0" prefHeight="25.0" prefWidth="505.0">
+         <menus>
+            <Menu mnemonicParsing="false" text="%file">
+               <items>
+                  <MenuItem fx:id="closeMenuBarLoginWindow" mnemonicParsing="false" onAction="#closeApplicationByMenuBar" text="%exit" />
+               </items>
+            </Menu>
+         </menus>
+      </MenuBar>
    </children>
 </AnchorPane>

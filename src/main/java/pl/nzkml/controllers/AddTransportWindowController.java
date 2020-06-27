@@ -8,7 +8,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import javafx.stage.Window;
-import pl.nzkml.SMSSceneManager;
+import pl.nzkml.WMSSceneManager;
 import pl.nzkml.datasource.DataType;
 import pl.nzkml.datasource.RepositoryFactory;
 import pl.nzkml.datasource.model.Category;
@@ -84,7 +84,7 @@ public class AddTransportWindowController extends AbstractController{
         transport.setDate(new Date());
         transport.setAccepted(false);
         RepositoryFactory.getInstance().createRepository(DataType.TRANSPORT).add(transport);
-        SMSSceneManager.getInstance().backToPreviosu();
+        WMSSceneManager.getInstance().backToPreviosu();
     }
 
     private void initCategorySelectField() {
@@ -100,10 +100,10 @@ public class AddTransportWindowController extends AbstractController{
     }
 
     public void openCategoryWindow(ActionEvent actionEvent) {
-        SMSSceneManager.getInstance().openNewWindow(ApplicationProperties.NEW_CATEGORY_WINDOW);
+        WMSSceneManager.getInstance().openNewWindow(ApplicationProperties.NEW_CATEGORY_WINDOW);
     }
     public void backButtonAction(ActionEvent actionEvent) {
         Window window =   ((Node)(actionEvent.getSource())).getScene().getWindow();
-        SMSSceneManager.getInstance().closeAdditionalWindow((Stage)window);
+        WMSSceneManager.getInstance().closeAdditionalWindow((Stage)window);
     }
 }

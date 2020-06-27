@@ -6,7 +6,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.nzkml.datasource.CrudDao;
 import pl.nzkml.datasource.model.RegistryElement;
-import pl.nzkml.datasource.model.User;
 import pl.nzkml.datasource.repoException.RowNotFound;
 import pl.nzkml.datasource.xml.file.FileProcessor;
 import pl.nzkml.properties.ApplicationProperties;
@@ -47,7 +46,7 @@ public class MainRegistryDao implements CrudDao<RegistryElement> {
         if (itemsList.isEmpty()) {
             return null;
         }else{
-            return itemsList.stream().filter(temp -> categoryID.equals(temp.getCategoryID())).findAny().orElse(null);
+            return itemsList.stream().filter(temp -> categoryID.equals(String.valueOf(temp.getCategoryID()))).findAny().orElse(null);
         }
     }
 
@@ -58,9 +57,9 @@ public class MainRegistryDao implements CrudDao<RegistryElement> {
         FileProcessor fileProcessor = new FileProcessor();
         String xml = null;
         try {
-            xml = fileProcessor.readFile(ApplicationProperties.MAIN_STORE_REGISTRY_FILE_PATH);
+            xml = fileProcessor.readFile(ApplicationProperties.MAIN_WAREHOUSE_REGISTRY_FILE_PATH);
            if(!xml.isEmpty()) {
-               StoreRegistryListContainerToXml userListXmlContainer = new StoreRegistryListContainerToXml();
+               WarehouseRegistryListContainerToXml userListXmlContainer = new WarehouseRegistryListContainerToXml();
                 userListXmlContainer = mapper.readValue(xml, userListXmlContainer.getClass());
                itemsList =userListXmlContainer.getDataList();
            } else {
@@ -80,7 +79,7 @@ public class MainRegistryDao implements CrudDao<RegistryElement> {
     @Override
     public void update(RegistryElement element) throws RowNotFound {
         nullOrEmptyOperation();
-        itemsList.remove(select(element.getCategoryID()));
+        itemsList.remove(select(element.getCategoryID().toString()));
         insert(element);
         saveToFile();
     }
@@ -106,9 +105,9 @@ public class MainRegistryDao implements CrudDao<RegistryElement> {
     private void saveToFile() {
         XmlMapper mapper = new XmlMapper();
         try {
-            StoreRegistryListContainerToXml container = new StoreRegistryListContainerToXml();
+            WarehouseRegistryListContainerToXml container = new WarehouseRegistryListContainerToXml();
             container.setDataList(itemsList);
-            new FileProcessor().writeToFile(ApplicationProperties.MAIN_STORE_REGISTRY_FILE_PATH,mapper.writeValueAsString(container));
+            new FileProcessor().writeToFile(ApplicationProperties.MAIN_WAREHOUSE_REGISTRY_FILE_PATH,mapper.writeValueAsString(container));
         } catch (JsonProcessingException e) {
             logger.error("JsonProcessingException at the UserDaoXML insert method " + e.getMessage());
             Arrays.stream(e.getStackTrace()).forEach(a -> logger.error(a.toString()));
