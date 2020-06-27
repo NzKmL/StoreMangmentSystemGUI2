@@ -51,7 +51,7 @@
                 <artifactId>javafx-maven-plugin</artifactId>
                 <version>0.0.3</version>
                 <configuration>
-                    <mainClass>pl.nzkml.StoreManagmentSystemAPP</mainClass>
+                    <mainClass>pl.nzkml.WarehouseManagmentSystemAPP</mainClass>
                 </configuration>
             </plugin>
         </plugins>
