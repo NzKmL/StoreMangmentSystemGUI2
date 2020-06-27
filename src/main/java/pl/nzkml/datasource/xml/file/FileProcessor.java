@@ -1,5 +1,7 @@
 package pl.nzkml.datasource.xml.file;
 
+import javafx.application.Platform;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -21,9 +23,20 @@ public class FileProcessor {
             return sb.toString();
     }
     public void writeToFile(String fileName, String text) throws IOException {
-        FileWriter myWriter = new FileWriter(fileName);
-        myWriter.write(text);
-        myWriter.close();
+        Thread thread = new Thread(()->{
+            FileWriter myWriter = null;
+            try {
+                myWriter = new FileWriter(fileName);
+                myWriter.write(text);
+                myWriter.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+                Platform.exit();
+            }
+
+        });
+        thread.start();
+
     }
 
 }
