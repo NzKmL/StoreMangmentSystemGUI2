@@ -96,11 +96,32 @@ public class TransportRegistryController extends AbstractController {
         if(!transport.getAccepted().booleanValue()) {
 
             for (TransportElement transportElement : transport.getTransportElements()) {
-                RegistryElement registryElement = new RegistryElement();
-                registryElement.setCategoryID(transportElement.getCategoryID());
+
+                RegistryElement registryElement =
+                        (RegistryElement) RepositoryFactory.getInstance().createRepository(DataType.MAIN_REGISTRY)
+                                .getByID(String.valueOf(transportElement.getCategoryID()));
+
+                if(registryElement==null){
+                    registryElement= new RegistryElement();
+                    registryElement.setCategoryID(transportElement.getCategoryID());
+                    registryElement.setNumberOfItems(0);
+                    Integer newState =  registryElement.getNumberOfItems()+transportElement.getQuantity();
+                    registryElement.setNumberOfItems(newState);
+                    registryElement.setNumberOfItems(transportElement.getQuantity());
+                    RepositoryFactory.getInstance().createRepository(DataType.MAIN_REGISTRY).add(registryElement);
+                }
+                else{
+                Integer newState =  registryElement.getNumberOfItems()+transportElement.getQuantity();
+                registryElement.setNumberOfItems(newState);
                 registryElement.setNumberOfItems(transportElement.getQuantity());
-                RepositoryFactory.getInstance().createRepository(DataType.MAIN_REGISTRY).add(registryElement);
+                try {
+                    RepositoryFactory.getInstance().createRepository(DataType.MAIN_REGISTRY).update(registryElement);
+                } catch (RowNotFound rowNotFound) {
+                    rowNotFound.printStackTrace();
+                }
             }
+            }
+
             transport.setAccepted(true);
             try {
                 RepositoryFactory.getInstance().createRepository(DataType.TRANSPORT).update(transport);

@@ -13,6 +13,7 @@ import pl.nzkml.datasource.RepositoryFactory;
 import pl.nzkml.datasource.model.Category;
 import pl.nzkml.datasource.model.Order;
 import pl.nzkml.datasource.model.categoryListElement.OrderElement;
+import pl.nzkml.datasource.model.tableElement.OrderElementTableElement;
 import pl.nzkml.datasource.model.tableElement.OrderTableElements;
 
 import java.util.*;
@@ -88,7 +89,11 @@ public class AddOrderWindowController extends AbstractController{
         order.setOrderDate(new Date());
         order.setRealized(false);
         RepositoryFactory.getInstance().createRepository(DataType.ORDER).add(order);
-        WMSSceneManager.getInstance().backToPreviosu();
+
+
+        orderTable.getItems().clear();
+        orderID.setText("");
+
     }
     public void backButtonAction(ActionEvent actionEvent) {
         Window window =   ((Node)(actionEvent.getSource())).getScene().getWindow();

@@ -84,7 +84,9 @@ public class AddTransportWindowController extends AbstractController{
         transport.setDate(new Date());
         transport.setAccepted(false);
         RepositoryFactory.getInstance().createRepository(DataType.TRANSPORT).add(transport);
-        WMSSceneManager.getInstance().backToPreviosu();
+
+        transportTable.getItems().clear();
+        transportID.setText("");
     }
 
     private void initCategorySelectField() {
