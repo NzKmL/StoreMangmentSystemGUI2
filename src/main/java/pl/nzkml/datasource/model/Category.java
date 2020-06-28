@@ -1,11 +1,13 @@
 package pl.nzkml.datasource.model;
 
+import pl.nzkml.datasource.BoxSizeEnum;
+
 public class Category {
     Integer id;
     String name;
     String metric;
     Integer boxQuantity;
-    String boxSize;
+    BoxSizeEnum boxSize;
 
     public Integer getId() {
         return id;
@@ -39,11 +41,11 @@ public class Category {
         this.boxQuantity = boxQuantity;
     }
 
-    public String getBoxSize() {
+    public BoxSizeEnum getBoxSize() {
         return boxSize;
     }
 
-    public void setBoxSize(String boxSize) {
+    public void setBoxSize(BoxSizeEnum boxSize) {
         this.boxSize = boxSize;
     }
 

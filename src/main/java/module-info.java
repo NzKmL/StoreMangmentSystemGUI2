@@ -18,4 +18,5 @@ module pl.nzkml {
     exports pl.nzkml.datasource.xml.dao.transport;
     exports pl.nzkml.datasource.xml.dao.mainRegistry;
     exports pl.nzkml.datasource.xml.dao.order;
+    exports pl.nzkml.datasource;
 }
